@@ -1,14 +1,13 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "npmScope": "base-fe",
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "N2E0ZWM3ZjItODNlNS00MDQ5LTg2YzgtZmNkNzNkYTA5YzBkfHJlYWQtd3JpdGU="
       }
     }
   },
@@ -20,12 +19,8 @@
     "test": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"]
     },
-    "e2e": {
-      "inputs": ["default", "^production"]
-    },
-    "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
-    }
+    "e2e": { "inputs": ["default", "^production"] },
+    "lint": { "inputs": ["default", "{workspaceRoot}/.eslintrc.json"] }
   },
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
@@ -38,20 +33,12 @@
     ],
     "sharedGlobals": []
   },
-  "cli": {
-    "packageManager": "npm"
-  },
+  "cli": { "packageManager": "npm" },
   "generators": {
     "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
+      "application": { "linter": "eslint" },
+      "library": { "linter": "eslint" },
+      "storybook-configuration": { "linter": "eslint" }
     },
     "@nrwl/angular:application": {
       "style": "scss",
@@ -59,13 +46,8 @@
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
-    "@nrwl/angular:library": {
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
+    "@nrwl/angular:library": { "linter": "eslint", "unitTestRunner": "jest" },
+    "@nrwl/angular:component": { "style": "scss" }
   },
   "defaultProject": "base-appview"
 }
