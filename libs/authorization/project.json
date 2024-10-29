@@ -1,0 +1,19 @@
+{
+  "name": "libs-authorization",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "authorization/src",
+  "prefix": "base-fe",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/authorization/**/*.ts",
+          "libs/authorization/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
