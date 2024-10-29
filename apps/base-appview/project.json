@@ -7,7 +7,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/base-appview",
         "index": "apps/base-appview/src/index.html",
@@ -19,7 +21,10 @@
           "apps/base-appview/src/favicon.ico",
           "apps/base-appview/src/assets"
         ],
-        "styles": ["apps/base-appview/src/styles.scss"],
+        "styles": [
+          "apps/base-appview/src/styles.scss",
+          "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -84,7 +89,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/base-appview"],
+      "outputs": [
+        "coverage/apps/base-appview"
+      ],
       "options": {
         "jestConfig": "apps/base-appview/jest.config.ts",
         "passWithNoTests": true
