@@ -19,6 +19,8 @@
     "@angular/platform-browser": "~14.2.0",
     "@angular/platform-browser-dynamic": "~14.2.0",
     "@angular/router": "~14.2.0",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "@nrwl/angular": "14.8.9",
     "ng-zorro-antd": "~14.3.0",
     "rxjs": "~7.5.0",

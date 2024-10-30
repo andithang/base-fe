@@ -1,0 +1,11 @@
+{
+  "editor.tabSize": 2,
+  "eslint.options": {
+    "configFile": ".eslintrc.json" // Or the specific path if located elsewhere
+  },
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ export class BaseAuthorizationModule {
     return {
       ngModule: BaseAuthorizationModule,
       providers: [
-        {provide: ModuleInjectionToken, useValue: config }
+        { provide: ModuleInjectionToken, useValue: config }
       ]
     };
   }
