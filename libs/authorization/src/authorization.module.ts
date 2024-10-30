@@ -1,11 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TestModule } from './feature/test/test.module';
 import { ModuleConfig, ModuleInjectionToken } from './data-access/module-config';
-import { ModuleModule } from './feature/module/module.module';
 
 @NgModule({
-  imports: [CommonModule, TestModule, ModuleModule],
+  imports: [CommonModule],
   exports: []
 })
 export class BaseAuthorizationModule {
