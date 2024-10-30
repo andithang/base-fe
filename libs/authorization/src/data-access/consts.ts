@@ -1,1 +1,0 @@
-export const HEADER_TOTAL = 'X-Total-Count';

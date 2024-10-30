@@ -19,6 +19,9 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
 }
 
+function getTokenFactory() {
+  return localStorage.getItem('Authorization') || '';
+}
 
 const icons: IconDefinition[] = [
   PlusOutline, EditOutline, DeleteOutline, LinkOutline
@@ -31,7 +34,8 @@ const icons: IconDefinition[] = [
     BrowserModule,
     BrowserAnimationsModule,
     BaseAuthorizationModule.forRoot({
-      SERVER_URL: "abc"
+      SERVER_URL: "http://103.143.206.116:8084/api",
+      getTokenFactory
     }),
     RouterModule.forRoot([
       {

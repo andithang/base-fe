@@ -3,7 +3,7 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ActionService } from "../../service/action.service";
 import { Action, ActionQuery } from "../../data-access/action.model";
 import { SearchWithPagination } from "../../data-access/page-size";
-import { HEADER_TOTAL } from "../../data-access/consts";
+import { HEADER_TOTAL } from "../../data-access/constant";
 
 @Component({
   selector: "base-fe-action",

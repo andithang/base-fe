@@ -14,3 +14,5 @@ export const APP_MENU_TITLE = {
  * Format Thời gian toàn hệ thống
  */
 export const NULL_SYMBOL = '-';
+
+export const HEADER_TOTAL = 'X-Total-Count';
