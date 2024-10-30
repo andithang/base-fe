@@ -30,9 +30,7 @@
     {
       "files": ["*.html"],
       "extends": ["plugin:@nrwl/nx/angular-template"],
-      "rules": {
-        "@typescript-eslint/no-explicit-any": "error"
-      }
+      "rules": {}
     }
   ]
 }

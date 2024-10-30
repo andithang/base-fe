@@ -1,7 +1,7 @@
 import { InjectionToken } from "@angular/core";
 
-export const ModuleInjectionToken = new InjectionToken<string>(
-  "base-fe-authorization"
+export const ServerUrlInjection = new InjectionToken<string>(
+  "base-fe-server-url"
 );
 
 export class ModuleConfig {

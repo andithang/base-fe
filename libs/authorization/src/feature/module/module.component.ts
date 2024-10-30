@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { ModuleConfig, ModuleInjectionToken } from '../../data-access/module-config';
+import { ModuleConfig, ServerUrlInjection } from '../../data-access/module-config';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Module } from '../../data-access/module.model';
@@ -28,7 +28,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 export class ModuleComponent implements OnInit, OnDestroy {
   constructor(
-    @Inject(ModuleInjectionToken) private moduleConfig: ModuleConfig,
+    @Inject(ServerUrlInjection) private moduleConfig: ModuleConfig,
     private _modalService: NzModalService
   ) { }
 
