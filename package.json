@@ -22,6 +22,8 @@
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "@nrwl/angular": "14.8.9",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
     "ng-zorro-antd": "~14.3.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

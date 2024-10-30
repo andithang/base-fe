@@ -1,0 +1,26 @@
+.module-container {
+  padding: 60px;
+
+  .module-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+
+    .table-title {
+      font-weight: 700;
+      font-size: 20px;
+    }
+  }
+
+  .module-search-container {}
+
+  .module-table-container {
+    .item-action-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+}

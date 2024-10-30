@@ -1,0 +1,65 @@
+<div class="module-container">
+  <div class="module-header-container">
+    <!-- Tiêu đề -->
+    <span class="table-title">{{ title }}</span>
+
+    <!-- Thêm mới -->
+    <button nz-button nzType="primary" (click)="onAddModule()">
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+      Thêm mới Module
+    </button>
+  </div>
+
+  <!-- Vùng tìm kiếm -->
+  <div class="module-search-container">
+
+  </div>
+
+  <!-- Vùng bảng -->
+  <div class="module-table-container">
+    <nz-table #basicTable [nzData]="listModules" [nzHideOnSinglePage]="true" [nzShowQuickJumper]="true"
+      (nzPageIndexChange)="onChangePageIndex($event)" (nzPageSizeChange)="onChangePageSize($event)">
+      <thead>
+        <tr>
+          <th nzAlign='center'>STT</th>
+          <th>Mã Module</th>
+          <th>Tên Module</th>
+          <th>Ngày cập nhật</th>
+          <th nzAlign='center'>Trạng thái</th>
+          <th>Đường dẫn</th>
+          <th nzAlign='center'>Map Action</th>
+          <th nzAlign='center'>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data; index as i">
+          <td nzAlign='center'>{{i+1+(pageIndex-1)*pageSize}}</td>
+          <td>{{data.code}}</td>
+          <td>{{data.name}}</td>
+          <td>{{momentParser(data.updateTime)}}</td>
+          <td nzAlign='center'>
+            <nz-switch nzSize="small" [ngModel]="data.status" [title]="data.status?'Khóa':'Kích hoạt'"
+              (click)="onChangeModuleStatus(data)" [nzControl]="true"></nz-switch>
+          </td>
+          <td>{{data.pathUrl}}</td>
+          <td nzAlign='center'>
+            <button nz-button nzType="default" nzShape="circle" title="Cấu hình Action"
+              (click)="onMappingModuleAction(data)">
+              <span nz-icon nzType="link" nzTheme="outline"></span>
+            </button>
+          </td>
+          <td nzAlign='center'>
+            <span class="item-action-box">
+              <button nz-button nzType="default" nzShape="circle" title="Chỉnh sửa" (click)="onUpdateModule(data)">
+                <span nz-icon nzType="edit" nzTheme="outline"></span>
+              </button>
+              <button nz-button nzType="default" nzShape="circle" title="Xóa" nzDanger (click)="onDeleteModule(data)">
+                <span nz-icon nzType="delete" nzTheme="outline"></span>
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
