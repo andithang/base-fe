@@ -15,7 +15,14 @@
             "title": "Quản lý hành động",
             "create-btn": "Thêm mới hành động",
             "name": "Tên hành động",
-            "code": "Mã hành động"
+            "code": "Mã hành động",
+            "delete-success": "Xóa hành động thành công",
+            "delete-failed": "Xóa hành động thất bại",
+            "delete-title": "Xác nhận xóa",
+            "delete-content": "Xác nhận xóa hành động <b>{{name}}</b>"
+        },
+        "notify": {
+            "title": "Thông báo"
         }
     }
 }

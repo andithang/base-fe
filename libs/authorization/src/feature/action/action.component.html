@@ -51,6 +51,7 @@
       (nzPageIndexChange)="onChangePageIndex($event)"
       [nzShowTotal]="totalTpl"
       [nzNoResult]="noDataTpl"
+      [nzLoading]="loading"
     >
       <thead>
         <tr>
@@ -70,8 +71,8 @@
           <td>{{ data.status | statusCommon }}</td>
           <td>{{ data.updateTime | date: "dd/MM/yyyy hh:mm:ss" }}</td>
           <td class="action-btns">
-            <button nz-button nzType="primary"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
-            <button nz-button nzDanger><span nz-icon nzType="delete" nzTheme="fill"></span></button>
+            <button nz-button nzType="primary" nzShape="circle"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
+            <button nz-button nzDanger nzShape="circle" (click)="delete(data)"><span nz-icon nzType="delete" nzTheme="fill"></span></button>
           </td>
         </tr>
       </tbody>

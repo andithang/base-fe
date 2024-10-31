@@ -16,6 +16,8 @@ import { CommonModule } from "@angular/common";
 import { NzIconModule } from "ng-zorro-antd/icon";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NzSelectModule } from "ng-zorro-antd/select";
+import { NzModalModule, NzModalService } from "ng-zorro-antd/modal";
+import { NzNotificationModule, NzNotificationService } from "ng-zorro-antd/notification";
 
 @Component({
   selector: "base-fe-action",
@@ -35,14 +37,18 @@ import { NzSelectModule } from "ng-zorro-antd/select";
     ReactiveFormsModule,
     NzFormModule,
     NzInputModule,
-    NzEmptyModule
+    NzEmptyModule,
+    NzNotificationModule,
+    NzModalModule
   ],
   styleUrls: ['action.component.scss']
 })
 export class ActionComponent implements OnInit {
   constructor(
     private translateService: TranslateService,
-    private actionService: ActionService
+    private modal: NzModalService,
+    private actionService: ActionService,
+    private notify: NzNotificationService
   ) {}
 
   listActions: Action[] = [];
@@ -59,6 +65,7 @@ export class ActionComponent implements OnInit {
   })
 
   private getListActions() {
+    this.loading = true;
     this.actionService
       .doSearch(this.formSearch.value, this.pagination)
       .subscribe(({ body: list, headers }) => {
@@ -67,7 +74,7 @@ export class ActionComponent implements OnInit {
           this.listActions = list;
         }
         this.loading = false;
-      });
+      }, () => this.loading = false);
   }
 
   onChangePageIndex(newPage: number) {
@@ -82,5 +89,21 @@ export class ActionComponent implements OnInit {
 
   ngOnInit() {
     this.getListActions();
+  }
+
+  delete(action: Action) {
+    this.modal.confirm({
+      nzContent: this.translateService.instant('base-fe.actions.delete-content', { name: action.name }),
+      nzTitle: this.translateService.instant('base-fe.actions.delete-title'),
+      nzOnOk: () => {
+        this.actionService.delete(action).subscribe(() => {
+          this.notify.success(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.actions.delete-success'));
+          this.getListActions();
+        }, () => {
+          this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.actions.delete-success'));
+          this.loading = false;
+        });
+      }
+    })
   }
 }
