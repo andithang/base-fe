@@ -5,12 +5,52 @@
     [nzTitle]="cardTitleTpl"
     [nzExtra]="extraTpl"
   >
+    <!-- search form -->
+    <div class="search-form-container">
+      <form nz-form [formGroup]="formSearch">
+        <div class="form-search-grid" nz-row [nzGutter]="16">
+          <div class="form-grid-item" nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label nzFor="code">{{ "base-fe.actions.code" | translate }}</nz-form-label>
+              <nz-form-control>
+                <input nz-input name="code" type="text" id="code" formControlName="code" (keyup.enter)="search()">
+              </nz-form-control>
+            </nz-form-item >
+          </div>
+          <div class="form-grid-item" nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label nzFor="name">{{ "base-fe.actions.name" | translate }}</nz-form-label>
+              <nz-form-control>
+                <input nz-input name="name" type="text" id="name" formControlName="name" (keyup.enter)="search()">
+              </nz-form-control>
+            </nz-form-item >
+          </div>
+          <div class="form-grid-item" nz-col [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-label nzFor="status">{{ "base-fe.common.status" | translate }}</nz-form-label>
+              <nz-form-control>
+                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="{{ 'base-fe.common.status' | translate }}" formControlName="status">
+                  <nz-option nzLabel="{{ 'base-fe.common.active' | translate}}" [nzValue]="1"></nz-option>
+                  <nz-option nzLabel="{{ 'base-fe.common.inactive' | translate}}" [nzValue]="0"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item >
+          </div>
+        </div>
+      </form>
+      <div class="search-btn-container">
+        <button nz-button (click)="search()"><span nz-icon nzType="search" nzTheme="outline"></span> {{ 'base-fe.common.search' | translate }}</button>
+      </div>
+    </div>
+    <!-- table actions -->
     <nz-table #actionsTbl 
       [nzData]="listActions"
       [nzFrontPagination]="false"
       [nzTotal]="total"
       [nzPageSize]="pagination.size"
-      (nzPageIndexChange)="search($event)"
+      (nzPageIndexChange)="onChangePageIndex($event)"
+      [nzShowTotal]="totalTpl"
+      [nzNoResult]="noDataTpl"
     >
       <thead>
         <tr>
@@ -50,4 +90,12 @@
     <span nz-icon nzType="plus" nzTheme="outline"></span>
     {{ "base-fe.actions.create-btn" | translate }}
   </button>
+</ng-template>
+
+<ng-template #totalTpl>
+  {{ total }} {{ 'base-fe.common.num-of-records' | translate }}
+</ng-template>
+
+<ng-template #noDataTpl>
+  <nz-empty nzNotFoundContent="{{ 'base-fe.common.no-data' | translate }}"></nz-empty>
 </ng-template>

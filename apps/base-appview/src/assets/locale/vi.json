@@ -6,7 +6,10 @@
             "created-date": "Ngày tạo",
             "more-actions": "Hành động",
             "inactive": "Không hoạt động",
-            "active": "Hoạt động"
+            "active": "Hoạt động",
+            "search": "Tìm kiếm",
+            "num-of-records": "Bản ghi",
+            "no-data": "Không có dữ liệu"
         },
         "actions": {
             "title": "Quản lý hành động",
