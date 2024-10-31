@@ -1,3 +1,18 @@
 {
-    
+    "base-fe": {
+        "common": {
+            "stt": "STT",
+            "status": "Trạng thái",
+            "created-date": "Ngày tạo",
+            "more-actions": "Hành động",
+            "inactive": "Không hoạt động",
+            "active": "Hoạt động"
+        },
+        "actions": {
+            "title": "Quản lý hành động",
+            "create-btn": "Thêm mới hành động",
+            "name": "Tên hành động",
+            "code": "Mã hành động"
+        }
+    }
 }

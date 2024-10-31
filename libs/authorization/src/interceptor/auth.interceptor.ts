@@ -9,7 +9,7 @@ import {
   HttpErrorResponse,
 } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { AccessTokenInjection, ServerUrlInjection } from "../data-access/module-config";
+import { AccessTokenInjection, InterceptHandlerInjection, InterceptorHandler, ServerUrlInjection } from "../data-access/module-config";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,12 +17,13 @@ export class AuthInterceptor implements HttpInterceptor {
     private router: Router,
     @Inject(ServerUrlInjection) private serverUrl: string,
     @Inject(AccessTokenInjection) private accessToken: string,
+    @Inject(InterceptHandlerInjection) private handlers: InterceptorHandler,
   ) {}
 
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     if (
       !request ||
       !request.url ||
@@ -47,17 +48,14 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       tap(
-        (event: any) => {
+        (event: HttpEvent<unknown>) => {
           if (event instanceof HttpResponse) {
-            localStorage.setItem("httpHeaders", "ok");
+            if(this.handlers.interceptSuccessHandler) this.handlers.interceptSuccessHandler(event);
           }
         },
-        (err: any) => {
+        (err: HttpEvent<unknown>) => {
           if (err instanceof HttpErrorResponse) {
-            if (err.status === 401 || err.status === 0) {
-              console.log("1.auth");
-              this.router.navigate(["auths/login"]);
-            }
+            if(this.handlers.interceptErrorHandler) this.handlers.interceptErrorHandler(err);
           }
         }
       )

@@ -9,7 +9,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { DeleteOutline, EditOutline, LinkOutline, PlusOutline } from '@ant-design/icons-angular/icons';
+import { DeleteFill, DeleteOutline, EditFill, EditOutline, LinkOutline, PlusOutline } from '@ant-design/icons-angular/icons';
 import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
@@ -24,7 +24,7 @@ function getTokenFactory() {
 }
 
 const icons: IconDefinition[] = [
-  PlusOutline, EditOutline, DeleteOutline, LinkOutline
+  PlusOutline, EditOutline, DeleteOutline, LinkOutline, EditFill, DeleteFill,
 ];
 
 @NgModule({
@@ -35,7 +35,13 @@ const icons: IconDefinition[] = [
     BrowserAnimationsModule,
     BaseAuthorizationModule.forRoot({
       SERVER_URL: "http://103.143.206.116:8084/api",
-      getTokenFactory
+      getTokenFactory,
+      interceptErrorHandler(evt) {
+        console.log(evt);
+      },
+      interceptSuccessHandler(evt) {
+        console.log(evt);
+      },
     }),
     RouterModule.forRoot([
       {

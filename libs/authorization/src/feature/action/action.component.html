@@ -1,0 +1,53 @@
+<div class="authorization-actions-container">
+  <nz-card
+    class="authorization-actions-card"
+    [nzBordered]="false"
+    [nzTitle]="cardTitleTpl"
+    [nzExtra]="extraTpl"
+  >
+    <nz-table #actionsTbl 
+      [nzData]="listActions"
+      [nzFrontPagination]="false"
+      [nzTotal]="total"
+      [nzPageSize]="pagination.size"
+      (nzPageIndexChange)="search($event)"
+    >
+      <thead>
+        <tr>
+          <th>{{ "base-fe.common.stt" | translate }}</th>
+          <th>{{ "base-fe.actions.code" | translate }}</th>
+          <th>{{ "base-fe.actions.name" | translate }}</th>
+          <th>{{ "base-fe.common.status" | translate }}</th>
+          <th>{{ "base-fe.common.created-date" | translate }}</th>
+          <th>{{ "base-fe.common.more-actions" | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of actionsTbl.data; index as ind">
+          <td>{{ ind + 1 + pagination.page * pagination.size }}</td>
+          <td>{{ data.code }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.status | statusCommon }}</td>
+          <td>{{ data.updateTime | date: "dd/MM/yyyy hh:mm:ss" }}</td>
+          <td class="action-btns">
+            <button nz-button nzType="primary"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
+            <button nz-button nzDanger><span nz-icon nzType="delete" nzTheme="fill"></span></button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-card>
+</div>
+
+<ng-template #cardTitleTpl>
+  <div class="authorization-actions-card-title">
+    {{ "base-fe.actions.title" | translate }}
+  </div>
+</ng-template>
+
+<ng-template #extraTpl>
+  <button class="create-btn" nz-button nzType="primary">
+    <span nz-icon nzType="plus" nzTheme="outline"></span>
+    {{ "base-fe.actions.create-btn" | translate }}
+  </button>
+</ng-template>
