@@ -5,6 +5,30 @@
   "sourceRoot": "authorization/src",
   "prefix": "base-fe",
   "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/authorization"],
+      "options": {
+        "project": "libs/authorization/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/authorization/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/authorization/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/authorization"],
+      "options": {
+        "jestConfig": "libs/authorization/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {

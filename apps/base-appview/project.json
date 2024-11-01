@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/base-appview",
         "index": "apps/base-appview/src/index.html",
@@ -89,9 +87,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/base-appview"
-      ],
+      "outputs": ["coverage/apps/base-appview"],
       "options": {
         "jestConfig": "apps/base-appview/jest.config.ts",
         "passWithNoTests": true
