@@ -18,6 +18,8 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angul
 import { NzSelectModule } from "ng-zorro-antd/select";
 import { NzModalModule, NzModalService } from "ng-zorro-antd/modal";
 import { NzNotificationModule, NzNotificationService } from "ng-zorro-antd/notification";
+import { NgxTrimDirectiveModule } from "ngx-trim-directive";
+import { ActionFormComponent } from "./action-form/action-form.component";
 
 @Component({
   selector: "base-fe-action",
@@ -39,7 +41,8 @@ import { NzNotificationModule, NzNotificationService } from "ng-zorro-antd/notif
     NzInputModule,
     NzEmptyModule,
     NzNotificationModule,
-    NzModalModule
+    NzModalModule,
+    NgxTrimDirectiveModule
   ],
   styleUrls: ['action.component.scss']
 })
@@ -103,6 +106,35 @@ export class ActionComponent implements OnInit {
           this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.actions.delete-success'));
           this.loading = false;
         });
+      }
+    })
+  }
+
+  insertAction() {
+    const ref = this.modal.create({
+      nzTitle: this.translateService.instant('base-fe.actions.create-action'),
+      nzContent: ActionFormComponent,
+      nzFooter: null
+    });
+    ref.afterClose.subscribe(isSubmitted => {
+      if(isSubmitted) {
+        this.getListActions();
+      }
+    })
+  }
+
+  updateAction(action: Action) {
+    const ref = this.modal.create({
+      nzTitle: this.translateService.instant('base-fe.actions.edit-action'),
+      nzContent: ActionFormComponent,
+      nzComponentParams: {
+        action
+      },
+      nzFooter: null
+    });
+    ref.afterClose.subscribe(isSubmitted => {
+      if(isSubmitted) {
+        this.getListActions();
       }
     })
   }

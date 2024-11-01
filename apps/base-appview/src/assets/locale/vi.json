@@ -9,7 +9,13 @@
             "active": "Hoạt động",
             "search": "Tìm kiếm",
             "num-of-records": "Bản ghi",
-            "no-data": "Không có dữ liệu"
+            "no-data": "Không có dữ liệu",
+            "description": "Mô tả",
+            "cancel": "Hủy bỏ",
+            "save": "Lưu lại",
+            "message": {
+                "notify": "Thông báo"
+            }
         },
         "actions": {
             "title": "Quản lý hành động",
@@ -19,7 +25,23 @@
             "delete-success": "Xóa hành động thành công",
             "delete-failed": "Xóa hành động thất bại",
             "delete-title": "Xác nhận xóa",
-            "delete-content": "Xác nhận xóa hành động <b>{{name}}</b>"
+            "delete-content": "Xác nhận xóa hành động <b>{{name}}</b>",
+            "create-action": "Thêm mới hành động",
+            "edit-action": "Cập nhật hành động",
+            "errorForm": {
+                "name": {
+                    "required": "Tên hành động bắt buộc nhập"
+                },
+                "code": {
+                    "required": "Mã hành động bắt buộc nhập"
+                }
+            },
+            "message": {
+                "insert-success": "Thêm mới hành động thành công",
+                "insert-fail": "Thêm mới hành động thất bại",
+                "edit-success": "Cập nhật hành động thành công",
+                "edit-fail": "Cập nhật hành động thất bại"
+            }
         },
         "notify": {
             "title": "Thông báo"
