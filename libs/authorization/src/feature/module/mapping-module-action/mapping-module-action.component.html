@@ -25,8 +25,7 @@
   [nzLoading]="loading">
   <thead>
     <tr>
-      <th nzWidth="60px" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
-        (nzCheckedChange)="checkAll($event)"></th>
+      <th nzWidth="60px" [(nzChecked)]="allChecked" (nzCheckedChange)="checkAll($event)"></th>
       <th>{{ "base-fe.common.stt" | translate }}</th>
       <th>{{ "base-fe.actions.code" | translate }}</th>
       <th>{{ "base-fe.actions.name" | translate }}</th>
@@ -36,7 +35,7 @@
   <tbody>
     <tr *ngFor="let data of actionsTbl.data; index as ind">
       <td [(nzChecked)]="data.checked!" (nzCheckedChange)="refreshStatus()"></td>
-      <td>{{ ind + 1 }}</td>
+      <td>{{ ind + 1 + this.pagination.page*this.pagination.size }}</td>
       <td>{{ data.code }}</td>
       <td>{{ data.name }}</td>
       <td>{{ data.status | statusCommon }}</td>

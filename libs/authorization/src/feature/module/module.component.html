@@ -77,13 +77,14 @@
           <td>{{ data.status | statusCommon }}</td>
           <td>{{ data.pathUrl }}</td>
           <td class="action-btns">
-            <button nz-button nzType="default" nzShape="circle" (click)="updateModule(data)"><span nz-icon nzType="edit"
-                nzTheme="fill"></span></button>
-            <button nz-button nzType="default" nzShape="circle" (click)="onMappingModuleAction(data)">
-              <span nz-icon nzType="link" nzTheme="outline"></span>
+            <button nz-button nzType="default" nzShape="circle" [title]="'base-fe.modules.edit-module'|translate"
+              (click)="updateModule(data)"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
+            <button nz-button nzType="default" nzShape="circle" [title]="'base-fe.modules.map-module-action'|translate"
+              (click)="onMappingModuleAction(data)">
+              <span nz-icon nzType="setting" nzTheme="fill"></span>
             </button>
-            <button nz-button nzDanger nzShape="circle" (click)="deleteModule(data)"><span nz-icon nzType="delete"
-                nzTheme="fill"></span></button>
+            <button nz-button nzDanger nzShape="circle" [title]="'base-fe.modules.delete-module'|translate"
+              (click)="deleteModule(data)"><span nz-icon nzType="delete" nzTheme="fill"></span></button>
           </td>
         </tr>
       </tbody>

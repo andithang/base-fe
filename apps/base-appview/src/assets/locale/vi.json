@@ -85,6 +85,7 @@
       "delete-content": "Xác nhận xóa module <b>{{name}}</b>",
       "create-module": "Thêm mới module",
       "edit-module": "Cập nhật module",
+      "delete-module": "Xóa module",
       "map-module-action": "Cấu hình Action với Module",
       "errorForm": {
         "name": {

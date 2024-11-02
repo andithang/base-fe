@@ -20,4 +20,5 @@ export type ActionQuery = Nullable<Action>;
 
 export interface ActionsQueryByModuleId {
   id: number;
+  code: string;
 }
