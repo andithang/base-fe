@@ -2,7 +2,7 @@
   <form [formGroup]="formPermission" nz-row [nzGutter]="16">
     <div class="form-grid-item" nz-col [nzMd]="12" [nzSm]="24">
       <nz-form-item>
-        <nz-form-label nzFor="code">{{ "base-fe.permissions.code" | translate }}</nz-form-label>
+        <nz-form-label nzFor="code" nzRequired>{{ "base-fe.permissions.code" | translate }}</nz-form-label>
         <nz-form-control [nzErrorTip]="codeErrorTpl">
           <input nz-input name="code" type="text" trim="blur" id="code" formControlName="code">
         </nz-form-control>
@@ -13,7 +13,7 @@
     </div>
     <div class="form-grid-item" nz-col [nzMd]="12" [nzSm]="24">
       <nz-form-item>
-        <nz-form-label nzFor="name">{{ "base-fe.permissions.name" | translate }}</nz-form-label>
+        <nz-form-label nzFor="name" nzRequired>{{ "base-fe.permissions.name" | translate }}</nz-form-label>
         <nz-form-control [nzErrorTip]="nameErrorTpl">
           <input nz-input name="name" type="text" trim="blur" id="name" formControlName="name">
         </nz-form-control>

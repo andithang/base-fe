@@ -43,7 +43,7 @@
       </div>
     </div>
     <!-- table actions -->
-    <nz-table #actionsTbl 
+    <nz-table #actionsTbl
       [nzData]="listActions"
       [nzFrontPagination]="false"
       [nzTotal]="total"
@@ -71,7 +71,7 @@
           <td>{{ data.status | statusCommon }}</td>
           <td>{{ data.updateTime | date: "dd/MM/yyyy hh:mm:ss" }}</td>
           <td class="action-btns">
-            <button [baseFeHasPermission]="actionCodesPages.actionPage.update" nz-button nzType="primary" nzShape="circle" (click)="updateAction(data)"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
+            <button [baseFeHasPermission]="actionCodesPages.actionPage.update" nz-button nzType="default" nzShape="circle" (click)="updateAction(data)"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
             <button [baseFeHasPermission]="actionCodesPages.actionPage.delete" nz-button nzDanger nzShape="circle" (click)="delete(data)"><span nz-icon nzType="delete" nzTheme="fill"></span></button>
           </td>
         </tr>

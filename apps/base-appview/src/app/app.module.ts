@@ -52,7 +52,7 @@ const icons: IconDefinition[] = [
         loadComponent: () => import('@base-fe/authorization').then(m => m.ModuleComponent),
       },
       {
-        path: "auth/permissions",
+        path: "pages/sys-config/permissions",
         loadComponent: () => import('@base-fe/authorization').then(m => m.PermissionComponent),
       },
       {

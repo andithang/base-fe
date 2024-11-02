@@ -21,3 +21,25 @@ export type PermissionQuery = Nullable<Permission>;
 export interface PermissionsQueryByModuleId {
   id: number;
 }
+
+export interface PermissionMapper {
+  roleModuleId: number,
+  roleId: number,
+  moduleCode: string,
+  actionCode: string,
+  value: string,
+  text: string,
+  id: number,
+  parentId: number,
+  checked: boolean,
+  list: string
+}
+
+export interface PermissionMapperRequest {
+  roleId: number,
+  list: {
+    roleId: number,
+    moduleCode: string,
+    actionCode: string
+  }[]
+}

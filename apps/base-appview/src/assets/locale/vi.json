@@ -91,6 +91,8 @@
       "delete-content": "Xác nhận xóa quyền <b>{{name}}</b>",
       "create-permission": "Thêm mới quyền",
       "edit-permission": "Cập nhật quyền",
+      "delete-permission": "Xóa quyền",
+      "map-permission-module": "Cấu hình quyền",
       "errorForm": {
         "name": {
           "required": "Tên quyền bắt buộc nhập"
@@ -103,7 +105,11 @@
         "insert-success": "Thêm mới quyền thành công",
         "insert-fail": "Thêm mới quyền thất bại",
         "edit-success": "Cập nhật quyền thành công",
-        "edit-fail": "Cập nhật quyền thất bại"
+        "edit-fail": "Cập nhật quyền thất bại",
+        "delete-success": "Xóa quyền thành công",
+        "delete-fail": "Xóa quyền thất bại",
+        "mapping-success": "Cấu hình quyền thành công",
+        "mapping-fail": "Cấu hình quyền thất bại"
       }
     },
     "modules": {

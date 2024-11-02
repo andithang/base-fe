@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -17,10 +17,11 @@ import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { PermissionService } from '../../service/permission.service';
 import { Permission } from '../../data-access/permission.model';
 import { PermissionFormComponent } from './permission-form/permission-form.component';
-import { HEADER_TOTAL } from '@base-fe/authorization';
+import { ActionCodesConfig, ActionCodesPagesInjection, HasPermissionDirective, HEADER_TOTAL } from '@base-fe/authorization';
 import { SearchWithPagination } from '../../data-access/page-size';
 import { MappingPermissionModuleComponent } from './mapping-permission-module/mapping-permission-module.component';
 import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
+import { PermissionCheckerService } from '../../shared/permission-checker';
 
 @Component({
   selector: 'base-fe-permission',
@@ -44,7 +45,8 @@ import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
     NzEmptyModule,
     NzNotificationModule,
     NzModalModule,
-    NgxTrimDirectiveModule
+    NgxTrimDirectiveModule,
+    HasPermissionDirective
   ],
 })
 export class PermissionComponent implements OnInit {
@@ -53,7 +55,9 @@ export class PermissionComponent implements OnInit {
     private translateService: TranslateService,
     private modal: NzModalService,
     private permissionService: PermissionService,
-    private notify: NzNotificationService
+    private notify: NzNotificationService,
+    @Inject(ActionCodesPagesInjection) readonly actionCodesPages: ActionCodesConfig,
+    private permissionChecker: PermissionCheckerService,
   ) { }
 
   listPermissions: Permission[] = [];
@@ -74,16 +78,21 @@ export class PermissionComponent implements OnInit {
   }
 
   private getListPermission() {
-    this.loading = true;
-    this.permissionService
-      .doSearch(this.formSearch.value, this.pagination)
-      .subscribe(({ body: list, headers }) => {
-        this.total = Number(headers.get(HEADER_TOTAL));
-        if (list) {
-          this.listPermissions = list;
-        }
-        this.loading = false;
-      }, () => this.loading = false);
+    if(this.permissionChecker.isActionAllowed(this.actionCodesPages.permissionPage.search)) {
+      this.loading = true;
+      this.permissionService
+        .doSearch(this.formSearch.value, this.pagination)
+        .subscribe(({ body: list, headers }) => {
+          this.total = Number(headers.get(HEADER_TOTAL));
+          if (list) {
+            this.listPermissions = list;
+          }
+          this.loading = false;
+        }, () => this.loading = false);
+    } else {
+      this.loading = false;
+      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permission.unauthorized.actions.search'));
+    }
   }
 
   onChangePageIndex(newPage: number) {
@@ -105,7 +114,7 @@ export class PermissionComponent implements OnInit {
           this.notify.success(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permissions.delete-success'));
           this.getListPermission();
         }, () => {
-          this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permissions.delete-success'));
+          this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permissions.delete-failed'));
           this.loading = false;
         });
       }
@@ -143,12 +152,13 @@ export class PermissionComponent implements OnInit {
 
   onMappingPermissionModule(permission: Permission) {
     const ref = this.modal.create({
-      nzTitle: this.translateService.instant('base-fe.permissions.edit-permission'),
+      nzTitle: this.translateService.instant('base-fe.permissions.map-permission-module'),
       nzContent: MappingPermissionModuleComponent,
       nzComponentParams: {
         permission
       },
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: 900
     });
     ref.afterClose.subscribe(isSubmitted => {
       if (isSubmitted) {

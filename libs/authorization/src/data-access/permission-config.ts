@@ -18,3 +18,7 @@ export interface ActionAllowed {
 export interface ModulePermission extends BasePermission {
   mapModuleAction: string;
 }
+
+export interface PermissionPagePermission extends BasePermission {
+  mapPermissionModule: string;
+}

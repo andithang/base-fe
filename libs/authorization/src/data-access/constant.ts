@@ -34,5 +34,13 @@ export const DEFAULT_ACTION_CODES: ActionCodesConfig = {
     search: 'SEARCH',
     view: 'VIEW',
     mapModuleAction: 'MAP_ACTION_MODULE'
+  },
+  permissionPage: {
+    insert: 'INSERT',
+    update: 'UPDATE',
+    delete: 'DELETE',
+    search: 'SEARCH',
+    view: 'VIEW',
+    mapPermissionModule: "MAP_PERMISSION_MODULE"
   }
 }

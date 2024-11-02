@@ -1,0 +1,23 @@
+@import '../../../styles/global.scss';
+
+.modules-form-buttons {
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+}
+
+nz-input-group {
+  margin-bottom: 8px;
+}
+
+::ng-deep .highlight {
+  color: red;
+}
+
+.tree-view-searchbox {
+  padding-bottom: 16px;
+}
+
+.tree-view-container {
+  height: 500px;
+}

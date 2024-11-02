@@ -81,12 +81,12 @@ export class PermissionFormComponent implements OnInit {
       this.loading = true;
       if (this.permission.id) {
         this.permissionService.update({ id: this.permission.id, ...this.formPermission.value }).subscribe(() => {
-          this.notify.success(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.permissions.message.insert-success'));
+          this.notify.success(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.permissions.message.edit-success'));
           this.ref.close(true);
           this.loading = false;
         }, () => {
           this.loading = false;
-          this.notify.error(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.permissions.message.insert-fail'));
+          this.notify.error(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.permissions.message.edit-fail'));
         })
       } else {
         this.permissionService.insert({ id: null, ...this.formPermission.value }).subscribe(() => {

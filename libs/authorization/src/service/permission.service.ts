@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { AccessTokenInjection, ServerUrlInjection } from '../data-access/module-config';
 import { createRequestOption } from './request-util';
 import { SearchWithPagination } from '../data-access/page-size';
-import { Permission, PermissionForm, PermissionQuery } from '../data-access/permission.model';
+import { Permission, PermissionForm, PermissionMapper, PermissionMapperRequest, PermissionQuery } from '../data-access/permission.model';
 
 @Injectable({ providedIn: 'root' })
 export class PermissionService {
@@ -46,5 +46,13 @@ export class PermissionService {
     return this.http.get<Permission[]>(`${this.serverUrl}/roles/getAllRoles`, {
       observe: 'body'
     });
+  }
+
+  getTreeByPermisionId(data: Partial<Permission>) {
+    return this.http.post<PermissionMapper[]>(`${this.serverUrl}/roleModule/getTreeByRoleId`, data);
+  }
+
+  updatePermissionMapper(data: PermissionMapperRequest) {
+    return this.http.post<PermissionMapper[]>(`${this.serverUrl}/roleModule/updateRoleModule`, data);
   }
 }

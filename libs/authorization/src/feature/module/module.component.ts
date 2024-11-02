@@ -97,16 +97,21 @@ export class ModuleComponent implements OnInit, OnDestroy {
   }
 
   private getListModules() {
-    this.loading = true;
-    this.moduleService
-      .doSearch(this.formSearch.value, this.pagination)
-      .subscribe(({ body: list, headers }) => {
-        this.total = Number(headers.get(HEADER_TOTAL));
-        if (list) {
-          this.listModules = list;
-        }
-        this.loading = false;
-      }, () => this.loading = false);
+    if(this.permissionChecker.isActionAllowed(this.actionCodesPages.modulePage.search)) {
+      this.loading = true;
+      this.moduleService
+        .doSearch(this.formSearch.value, this.pagination)
+        .subscribe(({ body: list, headers }) => {
+          this.total = Number(headers.get(HEADER_TOTAL));
+          if (list) {
+            this.listModules = list;
+          }
+          this.loading = false;
+        }, () => this.loading = false);
+    } else {
+      this.loading = false;
+      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permission.unauthorized.actions.search'));
+    }
   }
 
   getListParentModules() {
