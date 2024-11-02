@@ -15,6 +15,9 @@ import { NgxTrimDirectiveModule } from "ngx-trim-directive";
 import { getError, trimRequired } from "../../../shared/validators";
 import { Module } from "../../../data-access/module.model";
 import { ModuleService } from "../../../service/module.service";
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { NzTreeNodeOptions } from "ng-zorro-antd/tree";
 
 @Component({
   standalone: true,
@@ -33,7 +36,9 @@ import { ModuleService } from "../../../service/module.service";
     NzInputModule,
     NzModalModule,
     NzNotificationModule,
-    TranslateModule
+    TranslateModule,
+    NzInputNumberModule,
+    NzTreeSelectModule
   ],
   selector: "base-fe-module-form",
   styleUrls: ['module-form.component.scss'],
@@ -48,17 +53,31 @@ export class ModuleFormComponent implements OnInit {
   ) { }
 
   module: Partial<Module> = {};
+  treeModule: NzTreeNodeOptions[] = [];
   loading = true;
   formModule: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, trimRequired]),
     code: new FormControl('', [Validators.required, trimRequired]),
     description: new FormControl('', []),
     status: new FormControl(1, [Validators.required]),
+    pathUrl: new FormControl('', []),
+    icon: new FormControl('', []),
+    position: new FormControl('', []),
+    parentId: new FormControl('', [])
   });
   getError = (control: string) => getError(this.formModule, control, this.translate, 'modules');
 
   ngOnInit() {
     if (this.module.id) this.initForm();
+    this.moduleService.getTreeParent().subscribe(data => {
+      if (data && data.body) {
+        const dataBody = data.body.filter(e => e.status === 1);
+        this.treeModule = this.formatDataTree(dataBody, 0);
+      } else {
+        this.treeModule = [];
+      }
+      console.log(this.treeModule)
+    });
   }
 
   initForm() {
@@ -66,8 +85,12 @@ export class ModuleFormComponent implements OnInit {
       id: new FormControl(this.module.id, []),
       name: new FormControl(this.module.name, [Validators.required, trimRequired]),
       code: new FormControl(this.module.code, [Validators.required, trimRequired]),
+      pathUrl: new FormControl(this.module.pathUrl, []),
+      icon: new FormControl(this.module.icon, []),
+      position: new FormControl(this.module.position, []),
       description: new FormControl(this.module.description, []),
       status: new FormControl(this.module.status, [Validators.required]),
+      parentId: new FormControl(this.module.parentId?.toString(), [])
     })
   }
 
@@ -81,12 +104,12 @@ export class ModuleFormComponent implements OnInit {
       this.loading = true;
       if (this.module.id) {
         this.moduleService.update({ id: this.module.id, ...this.formModule.value }).subscribe(() => {
-          this.notify.success(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.modules.message.insert-success'));
+          this.notify.success(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.modules.message.edit-success'));
           this.ref.close(true);
           this.loading = false;
         }, () => {
           this.loading = false;
-          this.notify.error(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.modules.message.insert-fail'));
+          this.notify.error(this.translate.instant('base-fe.common.message.notify'), this.translate.instant('base-fe.modules.message.edit-fail'));
         })
       } else {
         this.moduleService.insert({ id: null, ...this.formModule.value }).subscribe(() => {
@@ -101,4 +124,25 @@ export class ModuleFormComponent implements OnInit {
     }
   }
 
+  formatDataTree(data: Module[], parentId: number | null) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const arr: any[] = [];
+    for (let i = 0; i < data.length; i++) {
+      const dataItem = data[i];
+      if (dataItem.parentId === parentId) {
+        let children = [];
+        if (dataItem.id) {
+          children = this.formatDataTree(data, dataItem.id);
+        }
+        if (children.length > 0) {
+          dataItem.children = children;
+        } else {
+          dataItem.children = null;
+        }
+        const dataTreeview = { title: dataItem.name, key: dataItem.id.toString(), children: dataItem.children };
+        arr.push(dataTreeview);
+      }
+    }
+    return arr;
+  }
 }

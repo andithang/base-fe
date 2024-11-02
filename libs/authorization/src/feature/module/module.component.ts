@@ -10,7 +10,7 @@ import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notif
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SearchWithPagination } from '../../data-access/page-size';
 import { HEADER_TOTAL } from '../../data-access/constant';
-import { Module } from '../../data-access/module.model';
+import { Module, ParentModule } from '../../data-access/module.model';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -60,6 +60,7 @@ export class ModuleComponent implements OnInit {
   ) { }
 
   listModules: Module[] = [];
+  listParentModules: ParentModule[] = [];
   pagination: SearchWithPagination = {
     page: 0,
     size: 10,
@@ -70,9 +71,11 @@ export class ModuleComponent implements OnInit {
     code: new FormControl(''),
     name: new FormControl(''),
     status: new FormControl(null),
+    parentId: new FormControl(null),
   })
 
   ngOnInit() {
+    this.getListParentModules();
     this.getListModules();
   }
 
@@ -87,6 +90,12 @@ export class ModuleComponent implements OnInit {
         }
         this.loading = false;
       }, () => this.loading = false);
+  }
+
+  getListParentModules() {
+    this.moduleService.getParent().subscribe(({ body: list }) => {
+      this.listParentModules = list ? list : [];
+    });
   }
 
   onChangePageIndex(newPage: number) {
@@ -146,12 +155,13 @@ export class ModuleComponent implements OnInit {
 
   onMappingModuleAction(module: Module) {
     const ref = this.modal.create({
-      nzTitle: this.translateService.instant('base-fe.modules.edit-module'),
+      nzTitle: this.translateService.instant('base-fe.modules.map-module-action'),
       nzContent: MappingModuleActionComponent,
       nzComponentParams: {
         module
       },
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: 900
     });
     ref.afterClose.subscribe(isSubmitted => {
       if (isSubmitted) {

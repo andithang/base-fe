@@ -75,12 +75,17 @@
       "create-btn": "Thêm mới module",
       "name": "Tên module",
       "code": "Mã module",
+      "path": "Đường dẫn",
+      "icon": "Icon",
+      "parent": "Module cha",
+      "position": "Số thứ tự",
       "delete-success": "Xóa module thành công",
       "delete-failed": "Xóa module thất bại",
       "delete-title": "Xác nhận xóa",
       "delete-content": "Xác nhận xóa module <b>{{name}}</b>",
       "create-module": "Thêm mới module",
       "edit-module": "Cập nhật module",
+      "map-module-action": "Cấu hình Action với Module",
       "errorForm": {
         "name": {
           "required": "Tên module bắt buộc nhập"
@@ -93,7 +98,9 @@
         "insert-success": "Thêm mới module thành công",
         "insert-fail": "Thêm mới module thất bại",
         "edit-success": "Cập nhật module thành công",
-        "edit-fail": "Cập nhật module thất bại"
+        "edit-fail": "Cập nhật module thất bại",
+        "mapping-success": "Gán module action thành công",
+        "mapping-fail": "Gán module action thất bại"
       }
     },
     "notify": {

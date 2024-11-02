@@ -1,3 +1,64 @@
-<p>
-  mapping-module-action works!
-</p>
+<div class="search-form-container">
+  <form nz-form [formGroup]="formSearch">
+    <div class="form-search-grid" nz-row [nzGutter]="16">
+      <div class="form-grid-item" nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="code">{{ "base-fe.actions.code" | translate }}</nz-form-label>
+          <nz-form-control>
+            <input nz-input name="code" type="text" id="code" formControlName="code" trim="blur"
+              (keyup.enter)="search()">
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="form-grid-item" nz-col [nzSpan]="12">
+        <div class="search-btn-container">
+          <button nz-button (click)="search()"><span nz-icon nzType="search" nzTheme="outline"></span> {{
+            'base-fe.common.search' | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- table actions -->
+<nz-table #actionsTbl [nzData]="listActions" [nzFrontPagination]="true" [nzTotal]="total" [nzPageSize]="pagination.size"
+  (nzPageIndexChange)="onChangePageIndex($event)" [nzShowTotal]="totalTpl" [nzNoResult]="noDataTpl"
+  [nzLoading]="loading">
+  <thead>
+    <tr>
+      <th nzWidth="60px" [(nzChecked)]="allChecked" [nzIndeterminate]="indeterminate"
+        (nzCheckedChange)="checkAll($event)"></th>
+      <th>{{ "base-fe.common.stt" | translate }}</th>
+      <th>{{ "base-fe.actions.code" | translate }}</th>
+      <th>{{ "base-fe.actions.name" | translate }}</th>
+      <th>{{ "base-fe.common.status" | translate }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of actionsTbl.data; index as ind">
+      <td [(nzChecked)]="data.checked!" (nzCheckedChange)="refreshStatus()"></td>
+      <td>{{ ind + 1 }}</td>
+      <td>{{ data.code }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.status | statusCommon }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<ng-template #totalTpl>
+  {{ total }} {{ 'base-fe.common.num-of-records' | translate }}
+</ng-template>
+
+<ng-template #noDataTpl>
+  <nz-empty nzNotFoundContent="{{ 'base-fe.common.no-data' | translate }}"></nz-empty>
+</ng-template>
+
+<div class="modules-form-buttons">
+  <button nz-button nzType="default" (click)="cancel()">
+    <span nz-icon nzType="close" nzTheme="outline"></span>
+    {{ 'base-fe.common.cancel' | translate }}
+  </button>
+  <button nz-button nzType="primary" (click)="submit()">
+    <span nz-icon nzType="save" nzTheme="outline"></span>
+    {{ 'base-fe.common.save' | translate }}
+  </button>
+</div>
