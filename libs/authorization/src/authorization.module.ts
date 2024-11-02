@@ -2,9 +2,11 @@ import { ModuleWithProviders, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
   AccessTokenInjection,
+  ActionCodesPagesInjection,
   InterceptHandlerInjection,
   ModuleConfig,
   ServerUrlInjection,
+  UserPermissionInjection,
 } from "./data-access/module-config";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthInterceptor } from "./interceptor/auth.interceptor";
@@ -32,6 +34,12 @@ export class BaseAuthorizationModule {
           },
         },
         { provide: AccessTokenInjection, useFactory: config.getTokenFactory },
+        {
+          provide: ActionCodesPagesInjection, useValue: config.ACTION_CODES_PAGES
+        },
+        {
+          provide: UserPermissionInjection, useFactory: config.getUserPermission
+        }
       ],
     };
   }

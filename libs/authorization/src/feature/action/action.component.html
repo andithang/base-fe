@@ -39,7 +39,7 @@
         </div>
       </form>
       <div class="search-btn-container">
-        <button nz-button (click)="search()"><span nz-icon nzType="search" nzTheme="outline"></span> {{ 'base-fe.common.search' | translate }}</button>
+        <button [baseFeHasPermission]="actionCodesPages.actionPage.search" nz-button (click)="search()"><span nz-icon nzType="search" nzTheme="outline"></span> {{ 'base-fe.common.search' | translate }}</button>
       </div>
     </div>
     <!-- table actions -->
@@ -71,8 +71,8 @@
           <td>{{ data.status | statusCommon }}</td>
           <td>{{ data.updateTime | date: "dd/MM/yyyy hh:mm:ss" }}</td>
           <td class="action-btns">
-            <button nz-button nzType="primary" nzShape="circle" (click)="updateAction(data)"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
-            <button nz-button nzDanger nzShape="circle" (click)="delete(data)"><span nz-icon nzType="delete" nzTheme="fill"></span></button>
+            <button [baseFeHasPermission]="actionCodesPages.actionPage.update" nz-button nzType="primary" nzShape="circle" (click)="updateAction(data)"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
+            <button [baseFeHasPermission]="actionCodesPages.actionPage.delete" nz-button nzDanger nzShape="circle" (click)="delete(data)"><span nz-icon nzType="delete" nzTheme="fill"></span></button>
           </td>
         </tr>
       </tbody>
@@ -87,7 +87,7 @@
 </ng-template>
 
 <ng-template #extraTpl>
-  <button class="create-btn" nz-button nzType="primary" (click)="insertAction()">
+  <button class="create-btn" nz-button nzType="primary" (click)="insertAction()" [baseFeHasPermission]="actionCodesPages.actionPage.insert">
     <span nz-icon nzType="plus" nzTheme="outline"></span>
     {{ "base-fe.actions.create-btn" | translate }}
   </button>

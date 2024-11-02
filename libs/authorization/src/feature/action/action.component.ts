@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ActionService } from "../../service/action.service";
 import { Action } from "../../data-access/action.model";
@@ -6,7 +6,6 @@ import { SearchWithPagination } from "../../data-access/page-size";
 import { HEADER_TOTAL } from "../../data-access/constant";
 import { NzTableModule } from "ng-zorro-antd/table";
 import { NzCardModule } from "ng-zorro-antd/card";
-import { StatusCommonPipe } from "../../shared/status.pipe";
 import { NzButtonModule } from "ng-zorro-antd/button";
 import { NzGridModule } from "ng-zorro-antd/grid";
 import { NzFormModule } from "ng-zorro-antd/form";
@@ -20,6 +19,12 @@ import { NzModalModule, NzModalService } from "ng-zorro-antd/modal";
 import { NzNotificationModule, NzNotificationService } from "ng-zorro-antd/notification";
 import { NgxTrimDirectiveModule } from "ngx-trim-directive";
 import { ActionFormComponent } from "./action-form/action-form.component";
+import { StatusCommonPipe } from "../../shared/pipe/status.pipe";
+import { ActionCodesConfig, ActionCodesPagesInjection } from "../../data-access/module-config";
+import { PermissionCheckerService } from "../../shared/permission-checker";
+import { HasPermissionDirective } from "../../shared/directive/has-permission.directive";
+import { BaseFeAppService } from "../../service/app.service";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "base-fe-action",
@@ -42,16 +47,20 @@ import { ActionFormComponent } from "./action-form/action-form.component";
     NzEmptyModule,
     NzNotificationModule,
     NzModalModule,
-    NgxTrimDirectiveModule
+    NgxTrimDirectiveModule,
+    HasPermissionDirective
   ],
   styleUrls: ['action.component.scss']
 })
-export class ActionComponent implements OnInit {
+export class ActionComponent implements OnInit, OnDestroy {
   constructor(
     private translateService: TranslateService,
     private modal: NzModalService,
     private actionService: ActionService,
-    private notify: NzNotificationService
+    private notify: NzNotificationService,
+    @Inject(ActionCodesPagesInjection) readonly actionCodesPages: ActionCodesConfig,
+    private permissionChecker: PermissionCheckerService,
+    private appService: BaseFeAppService
   ) {}
 
   listActions: Action[] = [];
@@ -66,18 +75,29 @@ export class ActionComponent implements OnInit {
     name: new FormControl(''),
     status: new FormControl(null),
   })
+  private destroy$ = new Subject<void>();
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   private getListActions() {
-    this.loading = true;
-    this.actionService
-      .doSearch(this.formSearch.value, this.pagination)
-      .subscribe(({ body: list, headers }) => {
-        this.total = Number(headers.get(HEADER_TOTAL));
-        if (list) {
-          this.listActions = list;
-        }
-        this.loading = false;
-      }, () => this.loading = false);
+    if(this.permissionChecker.isActionAllowed(this.actionCodesPages.actionPage.search)) {
+      this.loading = true;
+      this.actionService
+        .doSearch(this.formSearch.value, this.pagination)
+        .subscribe(({ body: list, headers }) => {
+          this.total = Number(headers.get(HEADER_TOTAL));
+          if (list) {
+            this.listActions = list;
+          }
+          this.loading = false;
+        }, () => this.loading = false);
+    } else {
+      this.loading = false;
+      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permission.unauthorized.actions.search'));
+    }
   }
 
   onChangePageIndex(newPage: number) {
@@ -91,7 +111,9 @@ export class ActionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getListActions();
+    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.getListActions();
+    })
   }
 
   delete(action: Action) {

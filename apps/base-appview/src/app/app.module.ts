@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { BaseAuthorizationModule } from '@base-fe/authorization';
+import { BaseAuthorizationModule, DEFAULT_ACTION_CODES } from '@base-fe/authorization';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -13,6 +13,7 @@ import { DeleteFill, DeleteOutline, EditFill, EditOutline, LinkOutline, PlusOutl
 import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
+import { dataActions } from '../data/actions';
 registerLocaleData(vi);
 
 export function createTranslateLoader(http: HttpClient) {
@@ -42,10 +43,12 @@ const icons: IconDefinition[] = [
       interceptSuccessHandler(evt) {
         console.log(evt);
       },
+      ACTION_CODES_PAGES: DEFAULT_ACTION_CODES,
+      getUserPermission: () => dataActions,
     }),
     RouterModule.forRoot([
       {
-        path: "auth/modules",
+        path: "pages/sys-config/modules",
         loadComponent: () => import('@base-fe/authorization').then(m => m.ModuleComponent),
       },
       {
@@ -53,7 +56,7 @@ const icons: IconDefinition[] = [
         loadComponent: () => import('@base-fe/authorization').then(m => m.PermissionComponent),
       },
       {
-        path: "",
+        path: "pages/sys-config/actions",
         loadComponent: () => import('@base-fe/authorization').then(m => m.ActionComponent)
       }
     ]),

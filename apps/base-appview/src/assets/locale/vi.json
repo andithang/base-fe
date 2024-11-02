@@ -35,6 +35,42 @@
         },
         "code": {
           "required": "Mã hành động bắt buộc nhập"
+        },
+        "actions": {
+          "title": "Quản lý hành động",
+          "create-btn": "Thêm mới hành động",
+          "name": "Tên hành động",
+          "code": "Mã hành động",
+          "delete-success": "Xóa hành động thành công",
+          "delete-failed": "Xóa hành động thất bại",
+          "delete-title": "Xác nhận xóa",
+          "delete-content": "Xác nhận xóa hành động <b>{{name}}</b>",
+          "create-action": "Thêm mới hành động",
+          "edit-action": "Cập nhật hành động",
+          "errorForm": {
+            "name": {
+              "required": "Tên hành động bắt buộc nhập"
+            },
+            "code": {
+              "required": "Mã hành động bắt buộc nhập"
+            }
+          },
+          "message": {
+            "insert-success": "Thêm mới hành động thành công",
+            "insert-fail": "Thêm mới hành động thất bại",
+            "edit-success": "Cập nhật hành động thành công",
+            "edit-fail": "Cập nhật hành động thất bại"
+          }
+        },
+        "notify": {
+          "title": "Thông báo"
+        },
+        "permission": {
+          "unauthorized": {
+            "actions": {
+              "search": "Bạn không có quyền tìm kiếm hành động"
+            }
+          }
         }
       },
       "message": {

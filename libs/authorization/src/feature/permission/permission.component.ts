@@ -14,13 +14,13 @@ import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notif
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
-import { StatusCommonPipe } from '../../shared/status.pipe';
 import { PermissionService } from '../../service/permission.service';
 import { Permission } from '../../data-access/permission.model';
 import { PermissionFormComponent } from './permission-form/permission-form.component';
 import { HEADER_TOTAL } from '@base-fe/authorization';
 import { SearchWithPagination } from '../../data-access/page-size';
 import { MappingPermissionModuleComponent } from './mapping-permission-module/mapping-permission-module.component';
+import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
 
 @Component({
   selector: 'base-fe-permission',

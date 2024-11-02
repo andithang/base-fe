@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -18,9 +18,14 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
-import { StatusCommonPipe } from '../../shared/status.pipe';
 import { MappingModuleActionComponent } from './mapping-module-action/mapping-module-action.component';
 import { ModuleFormComponent } from './module-form/module-form.component';
+import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
+import { HasPermissionDirective } from '../../shared/directive/has-permission.directive';
+import { ActionCodesPagesInjection, ActionCodesConfig } from '../../data-access/module-config';
+import { BaseFeAppService } from '../../service/app.service';
+import { PermissionCheckerService } from '../../shared/permission-checker';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'base-fe-module',
@@ -46,17 +51,21 @@ import { ModuleFormComponent } from './module-form/module-form.component';
     NzModalModule,
     NgxTrimDirectiveModule,
     ModuleFormComponent,
-    MappingModuleActionComponent
+    MappingModuleActionComponent,
+    HasPermissionDirective
   ],
   providers: [NzModalService]
 })
 
-export class ModuleComponent implements OnInit {
+export class ModuleComponent implements OnInit, OnDestroy {
   constructor(
     private translateService: TranslateService,
     private modal: NzModalService,
     private moduleService: ModuleService,
-    private notify: NzNotificationService
+    private notify: NzNotificationService,
+    @Inject(ActionCodesPagesInjection) readonly actionCodesPages: ActionCodesConfig,
+    private permissionChecker: PermissionCheckerService,
+    private appService: BaseFeAppService
   ) { }
 
   listModules: Module[] = [];
@@ -73,10 +82,18 @@ export class ModuleComponent implements OnInit {
     status: new FormControl(null),
     parentId: new FormControl(null),
   })
+  private destroy$ = new Subject<void>();
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   ngOnInit() {
-    this.getListParentModules();
-    this.getListModules();
+    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.getListParentModules();
+      this.getListModules();
+    })
   }
 
   private getListModules() {
