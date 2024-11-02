@@ -11,7 +11,6 @@ import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notif
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { ActionService } from '../../../service/action.service';
 import { Action } from '../../../data-access/action.model';
-import { StatusCommonPipe } from '../../../shared/status.pipe';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -20,6 +19,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { SearchWithPagination } from '../../../data-access/page-size';
+import { StatusCommonPipe } from "../../../shared/pipe/status.pipe";
 
 @Component({
   selector: 'base-fe-mapping-module-module',

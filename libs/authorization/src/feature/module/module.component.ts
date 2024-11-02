@@ -18,9 +18,9 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
-import { StatusCommonPipe } from '../../shared/status.pipe';
 import { MappingModuleActionComponent } from './mapping-module-action/mapping-module-action.component';
 import { ModuleFormComponent } from './module-form/module-form.component';
+import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
 
 @Component({
   selector: 'base-fe-module',
