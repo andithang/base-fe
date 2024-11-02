@@ -14,3 +14,18 @@ export interface Module {
   codeAction: string | null;
   role: string | null;
 }
+
+
+import { Nullable } from "./shared-types";
+
+export interface ModuleBase {
+  id: number;
+  name: string;
+  code: string;
+  description: string;
+  status: number;
+}
+
+export type ModuleForm = ModuleBase;
+
+export type ModuleQuery = Nullable<Module>;

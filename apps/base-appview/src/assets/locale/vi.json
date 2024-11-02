@@ -1,50 +1,103 @@
 {
-    "base-fe": {
-        "common": {
-            "stt": "STT",
-            "status": "Trạng thái",
-            "created-date": "Ngày tạo",
-            "more-actions": "Hành động",
-            "inactive": "Không hoạt động",
-            "active": "Hoạt động",
-            "search": "Tìm kiếm",
-            "num-of-records": "Bản ghi",
-            "no-data": "Không có dữ liệu",
-            "description": "Mô tả",
-            "cancel": "Hủy bỏ",
-            "save": "Lưu lại",
-            "message": {
-                "notify": "Thông báo"
-            }
+  "base-fe": {
+    "common": {
+      "stt": "STT",
+      "status": "Trạng thái",
+      "created-date": "Ngày tạo",
+      "updated-date": "Ngày cập nhật",
+      "more-actions": "Hành động",
+      "inactive": "Không hoạt động",
+      "active": "Hoạt động",
+      "search": "Tìm kiếm",
+      "num-of-records": "Bản ghi",
+      "no-data": "Không có dữ liệu",
+      "description": "Mô tả",
+      "cancel": "Hủy bỏ",
+      "save": "Lưu lại",
+      "message": {
+        "notify": "Thông báo"
+      }
+    },
+    "actions": {
+      "title": "Quản lý hành động",
+      "create-btn": "Thêm mới hành động",
+      "name": "Tên hành động",
+      "code": "Mã hành động",
+      "delete-success": "Xóa hành động thành công",
+      "delete-failed": "Xóa hành động thất bại",
+      "delete-title": "Xác nhận xóa",
+      "delete-content": "Xác nhận xóa hành động <b>{{name}}</b>",
+      "create-action": "Thêm mới hành động",
+      "edit-action": "Cập nhật hành động",
+      "errorForm": {
+        "name": {
+          "required": "Tên hành động bắt buộc nhập"
         },
-        "actions": {
-            "title": "Quản lý hành động",
-            "create-btn": "Thêm mới hành động",
-            "name": "Tên hành động",
-            "code": "Mã hành động",
-            "delete-success": "Xóa hành động thành công",
-            "delete-failed": "Xóa hành động thất bại",
-            "delete-title": "Xác nhận xóa",
-            "delete-content": "Xác nhận xóa hành động <b>{{name}}</b>",
-            "create-action": "Thêm mới hành động",
-            "edit-action": "Cập nhật hành động",
-            "errorForm": {
-                "name": {
-                    "required": "Tên hành động bắt buộc nhập"
-                },
-                "code": {
-                    "required": "Mã hành động bắt buộc nhập"
-                }
-            },
-            "message": {
-                "insert-success": "Thêm mới hành động thành công",
-                "insert-fail": "Thêm mới hành động thất bại",
-                "edit-success": "Cập nhật hành động thành công",
-                "edit-fail": "Cập nhật hành động thất bại"
-            }
-        },
-        "notify": {
-            "title": "Thông báo"
+        "code": {
+          "required": "Mã hành động bắt buộc nhập"
         }
+      },
+      "message": {
+        "insert-success": "Thêm mới hành động thành công",
+        "insert-fail": "Thêm mới hành động thất bại",
+        "edit-success": "Cập nhật hành động thành công",
+        "edit-fail": "Cập nhật hành động thất bại"
+      }
+    },
+    "permissions": {
+      "title": "Quản lý quyền",
+      "create-btn": "Thêm mới quyền",
+      "name": "Tên quyền",
+      "code": "Mã quyền",
+      "delete-success": "Xóa quyền thành công",
+      "delete-failed": "Xóa quyền thất bại",
+      "delete-title": "Xác nhận xóa",
+      "delete-content": "Xác nhận xóa quyền <b>{{name}}</b>",
+      "create-permission": "Thêm mới quyền",
+      "edit-permission": "Cập nhật quyền",
+      "errorForm": {
+        "name": {
+          "required": "Tên quyền bắt buộc nhập"
+        },
+        "code": {
+          "required": "Mã quyền bắt buộc nhập"
+        }
+      },
+      "message": {
+        "insert-success": "Thêm mới quyền thành công",
+        "insert-fail": "Thêm mới quyền thất bại",
+        "edit-success": "Cập nhật quyền thành công",
+        "edit-fail": "Cập nhật quyền thất bại"
+      }
+    },
+    "modules": {
+      "title": "Quản lý module",
+      "create-btn": "Thêm mới module",
+      "name": "Tên module",
+      "code": "Mã module",
+      "delete-success": "Xóa module thành công",
+      "delete-failed": "Xóa module thất bại",
+      "delete-title": "Xác nhận xóa",
+      "delete-content": "Xác nhận xóa module <b>{{name}}</b>",
+      "create-module": "Thêm mới module",
+      "edit-module": "Cập nhật module",
+      "errorForm": {
+        "name": {
+          "required": "Tên module bắt buộc nhập"
+        },
+        "code": {
+          "required": "Mã module bắt buộc nhập"
+        }
+      },
+      "message": {
+        "insert-success": "Thêm mới module thành công",
+        "insert-fail": "Thêm mới module thất bại",
+        "edit-success": "Cập nhật module thành công",
+        "edit-fail": "Cập nhật module thất bại"
+      }
+    },
+    "notify": {
+      "title": "Thông báo"
     }
+  }
 }
