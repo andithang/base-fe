@@ -1,28 +1,28 @@
-<div class="authorization-modules-container">
-  <nz-card class="authorization-modules-card" [nzBordered]="false" [nzTitle]="cardTitleTpl" [nzExtra]="extraTpl">
+<div class="authorization-permissions-container">
+  <nz-card class="authorization-permissions-card" [nzBordered]="false" [nzTitle]="cardTitleTpl" [nzExtra]="extraTpl">
     <!-- search form -->
     <div class="search-form-container">
       <form nz-form [formGroup]="formSearch">
         <div class="form-search-grid" nz-row [nzGutter]="16">
-          <div class="form-grid-item" nz-col [nzSpan]="12">
+          <div class="form-grid-item" nz-col [nzSpan]="8">
             <nz-form-item>
-              <nz-form-label nzFor="code">{{ "base-fe.modules.code" | translate }}</nz-form-label>
+              <nz-form-label nzFor="code">{{ "base-fe.permissions.code" | translate }}</nz-form-label>
               <nz-form-control>
                 <input nz-input name="code" type="text" id="code" formControlName="code" trim="blur"
                   (keyup.enter)="search()">
               </nz-form-control>
             </nz-form-item>
           </div>
-          <div class="form-grid-item" nz-col [nzSpan]="12">
+          <div class="form-grid-item" nz-col [nzSpan]="8">
             <nz-form-item>
-              <nz-form-label nzFor="name">{{ "base-fe.modules.name" | translate }}</nz-form-label>
+              <nz-form-label nzFor="name">{{ "base-fe.permissions.name" | translate }}</nz-form-label>
               <nz-form-control>
                 <input nz-input name="name" type="text" id="name" formControlName="name" trim="blur"
                   (keyup.enter)="search()">
               </nz-form-control>
             </nz-form-item>
           </div>
-          <div class="form-grid-item" nz-col [nzSpan]="12">
+          <div class="form-grid-item" nz-col [nzSpan]="8">
             <nz-form-item>
               <nz-form-label nzFor="status">{{ "base-fe.common.status" | translate }}</nz-form-label>
               <nz-form-control>
@@ -34,18 +34,6 @@
               </nz-form-control>
             </nz-form-item>
           </div>
-          <div class="form-grid-item" nz-col [nzSpan]="12">
-            <nz-form-item>
-              <nz-form-label nzFor="parentId">{{ "base-fe.modules.parent" | translate }}</nz-form-label>
-              <nz-form-control>
-                <nz-select nzShowSearch nzAllowClear nzPlaceHolder="{{ 'base-fe.modules.parent' | translate }}"
-                  formControlName="parentId">
-                  <nz-option *ngFor="let parent of listParentModules" [nzLabel]="parent.parentName"
-                    [nzValue]="parent.parentId"></nz-option>
-                </nz-select>
-              </nz-form-control>
-            </nz-form-item>
-          </div>
         </div>
       </form>
       <div class="search-btn-container">
@@ -53,36 +41,34 @@
           'base-fe.common.search' | translate }}</button>
       </div>
     </div>
-    <!-- table modules -->
-    <nz-table #modulesTbl [nzData]="listModules" [nzFrontPagination]="false" [nzTotal]="total"
+    <!-- table permissions -->
+    <nz-table #permissionsTbl [nzData]="listPermissions" [nzFrontPagination]="false" [nzTotal]="total"
       [nzPageSize]="pagination.size" (nzPageIndexChange)="onChangePageIndex($event)" [nzShowTotal]="totalTpl"
       [nzNoResult]="noDataTpl" [nzLoading]="loading">
       <thead>
         <tr>
-          <th nzAlign="center">{{ "base-fe.common.stt" | translate }}</th>
-          <th>{{ "base-fe.modules.code" | translate }}</th>
-          <th>{{ "base-fe.modules.name" | translate }}</th>
+          <th>{{ "base-fe.common.stt" | translate }}</th>
+          <th>{{ "base-fe.permissions.code" | translate }}</th>
+          <th>{{ "base-fe.permissions.name" | translate }}</th>
           <th>{{ "base-fe.common.updated-date" | translate }}</th>
           <th>{{ "base-fe.common.status" | translate }}</th>
-          <th>{{ "base-fe.modules.path" | translate }}</th>
           <th>{{ "base-fe.common.more-actions" | translate }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of modulesTbl.data; index as ind">
-          <td nzAlign="center">{{ ind + 1 + pagination.page * pagination.size }}</td>
+        <tr *ngFor="let data of permissionsTbl.data; index as ind">
+          <td>{{ ind + 1 + pagination.page * pagination.size }}</td>
           <td>{{ data.code }}</td>
           <td>{{ data.name }}</td>
           <td>{{ data.updateTime | date: "dd/MM/yyyy hh:mm:ss" }}</td>
           <td>{{ data.status | statusCommon }}</td>
-          <td>{{ data.pathUrl }}</td>
           <td class="action-btns">
-            <button nz-button nzType="default" nzShape="circle" (click)="updateModule(data)"><span nz-icon nzType="edit"
-                nzTheme="fill"></span></button>
-            <button nz-button nzType="default" nzShape="circle" (click)="onMappingModuleAction(data)">
+            <button nz-button nzType="primary" nzShape="circle" (click)="updatePermisson(data)"><span nz-icon
+                nzType="edit" nzTheme="fill"></span></button>
+            <button nz-button nzType="default" nzShape="circle" (click)="onMappingPermissionModule(data)">
               <span nz-icon nzType="link" nzTheme="outline"></span>
             </button>
-            <button nz-button nzDanger nzShape="circle" (click)="deleteModule(data)"><span nz-icon nzType="delete"
+            <button nz-button nzDanger nzShape="circle" (click)="deletePermission(data)"><span nz-icon nzType="delete"
                 nzTheme="fill"></span></button>
           </td>
         </tr>
@@ -92,15 +78,15 @@
 </div>
 
 <ng-template #cardTitleTpl>
-  <div class="authorization-modules-card-title">
-    {{ "base-fe.modules.title" | translate }}
+  <div class="authorization-permissions-card-title">
+    {{ "base-fe.permissions.title" | translate }}
   </div>
 </ng-template>
 
 <ng-template #extraTpl>
-  <button class="create-btn" nz-button nzType="primary" (click)="insertModule()">
+  <button class="create-btn" nz-button nzType="primary" (click)="insertPermission()">
     <span nz-icon nzType="plus" nzTheme="outline"></span>
-    {{ "base-fe.modules.create-btn" | translate }}
+    {{ "base-fe.permissions.create-btn" | translate }}
   </button>
 </ng-template>
 

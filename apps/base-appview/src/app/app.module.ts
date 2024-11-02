@@ -30,7 +30,7 @@ const icons: IconDefinition[] = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [ 
+  imports: [
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -50,6 +50,10 @@ const icons: IconDefinition[] = [
       {
         path: "auth/modules",
         loadComponent: () => import('@base-fe/authorization').then(m => m.ModuleComponent),
+      },
+      {
+        path: "auth/permissions",
+        loadComponent: () => import('@base-fe/authorization').then(m => m.PermissionComponent),
       },
       {
         path: "pages/sys-config/actions",

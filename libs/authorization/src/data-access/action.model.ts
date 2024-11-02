@@ -1,16 +1,17 @@
 import { Nullable } from "./shared-types";
 
 export interface ActionBase {
-    code: string;
-    description: string;
-    id: number;
-    name: string;
-    status: number;
+  code: string;
+  description: string;
+  id: number;
+  name: string;
+  status: number;
 }
 
 export interface Action extends ActionBase {
-    tenantId: number;
-    updateTime: string;
+  tenantId: number;
+  updateTime: string;
+  checked?: boolean;
 }
 
 export type ActionForm = ActionBase;
@@ -18,5 +19,5 @@ export type ActionForm = ActionBase;
 export type ActionQuery = Nullable<Action>;
 
 export interface ActionsQueryByModuleId {
-    id: number;
+  id: number;
 }
