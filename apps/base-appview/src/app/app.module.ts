@@ -48,7 +48,7 @@ const icons: IconDefinition[] = [
     }),
     RouterModule.forRoot([
       {
-        path: "auth/modules",
+        path: "pages/sys-config/modules",
         loadComponent: () => import('@base-fe/authorization').then(m => m.ModuleComponent),
       },
       {

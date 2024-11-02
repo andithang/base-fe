@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ActionService } from "../../service/action.service";
 import { Action } from "../../data-access/action.model";
@@ -24,6 +24,7 @@ import { ActionCodesConfig, ActionCodesPagesInjection } from "../../data-access/
 import { PermissionCheckerService } from "../../shared/permission-checker";
 import { HasPermissionDirective } from "../../shared/directive/has-permission.directive";
 import { BaseFeAppService } from "../../service/app.service";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "base-fe-action",
@@ -51,7 +52,7 @@ import { BaseFeAppService } from "../../service/app.service";
   ],
   styleUrls: ['action.component.scss']
 })
-export class ActionComponent implements OnInit {
+export class ActionComponent implements OnInit, OnDestroy {
   constructor(
     private translateService: TranslateService,
     private modal: NzModalService,
@@ -74,6 +75,12 @@ export class ActionComponent implements OnInit {
     name: new FormControl(''),
     status: new FormControl(null),
   })
+  private destroy$ = new Subject<void>();
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   private getListActions() {
     if(this.permissionChecker.isActionAllowed(this.actionCodesPages.actionPage.search)) {
@@ -104,7 +111,7 @@ export class ActionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appService.translationLoaded$.subscribe(() => {
+    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.getListActions();
     })
   }

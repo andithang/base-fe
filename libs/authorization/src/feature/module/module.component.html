@@ -17,7 +17,7 @@
             <nz-form-item>
               <nz-form-label nzFor="name">{{ "base-fe.modules.name" | translate }}</nz-form-label>
               <nz-form-control>
-                <input nz-input name="name" type="text" id="name" formControlName="name" trim="blur"
+                <input nz-input name="name" type="text" id="name" formControlName="name" trim="blur" [baseFeHasPermission]="actionCodesPages.modulePage.search"
                   (keyup.enter)="search()">
               </nz-form-control>
             </nz-form-item>
@@ -77,12 +77,12 @@
           <td>{{ data.status | statusCommon }}</td>
           <td>{{ data.pathUrl }}</td>
           <td class="action-btns">
-            <button nz-button nzType="default" nzShape="circle" (click)="updateModule(data)"><span nz-icon nzType="edit"
+            <button nz-button nzType="default" nzShape="circle" (click)="updateModule(data)" [baseFeHasPermission]="actionCodesPages.modulePage.update"><span nz-icon nzType="edit"
                 nzTheme="fill"></span></button>
-            <button nz-button nzType="default" nzShape="circle" (click)="onMappingModuleAction(data)">
+            <button nz-button nzType="default" nzShape="circle" (click)="onMappingModuleAction(data)" [baseFeHasPermission]="actionCodesPages.modulePage.mapModuleAction">
               <span nz-icon nzType="link" nzTheme="outline"></span>
             </button>
-            <button nz-button nzDanger nzShape="circle" (click)="deleteModule(data)"><span nz-icon nzType="delete"
+            <button nz-button nzDanger nzShape="circle" (click)="deleteModule(data)" [baseFeHasPermission]="actionCodesPages.modulePage.delete"><span nz-icon nzType="delete"
                 nzTheme="fill"></span></button>
           </td>
         </tr>
@@ -98,7 +98,7 @@
 </ng-template>
 
 <ng-template #extraTpl>
-  <button class="create-btn" nz-button nzType="primary" (click)="insertModule()">
+  <button class="create-btn" nz-button nzType="primary" (click)="insertModule()" [baseFeHasPermission]="actionCodesPages.modulePage.insert">
     <span nz-icon nzType="plus" nzTheme="outline"></span>
     {{ "base-fe.modules.create-btn" | translate }}
   </button>

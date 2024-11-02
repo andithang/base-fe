@@ -26,5 +26,13 @@ export const DEFAULT_ACTION_CODES: ActionCodesConfig = {
     delete: 'DELETE',
     search: 'SEARCH',
     view: 'VIEW'
+  },
+  modulePage: {
+    insert: 'INSERT',
+    update: 'UPDATE',
+    delete: 'DELETE',
+    search: 'SEARCH',
+    view: 'VIEW',
+    mapModuleAction: 'MAP_ACTION_MODULE'
   }
 }

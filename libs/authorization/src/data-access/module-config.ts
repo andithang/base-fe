@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { InjectionToken } from "@angular/core";
-import { ActionAllowed, ActionPermission } from "./permission-config";
+import { ActionAllowed, ActionPermission, ModulePermission } from "./permission-config";
 import { DEFAULT_ACTION_CODES } from "./constant";
 
 export const ServerUrlInjection = new InjectionToken<string>("base-fe-server-url");
@@ -43,5 +43,6 @@ export interface UserPermission {
 }
 
 export interface ActionCodesConfig {
-  actionPage: ActionPermission
+  actionPage: ActionPermission,
+  modulePage: ModulePermission
 }
