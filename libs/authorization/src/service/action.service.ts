@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
-import { AccessTokenInjection, ModuleConfig, ServerUrlInjection } from '../data-access/module-config';
+import { AccessTokenInjection, ServerUrlInjection } from '../data-access/module-config';
 import { createRequestOption } from './request-util';
 import { Action, ActionForm, ActionQuery, ActionsQueryByModuleId } from '../data-access/action.model';
 import { SearchWithPagination } from '../data-access/page-size';

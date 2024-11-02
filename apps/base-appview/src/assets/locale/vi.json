@@ -45,6 +45,13 @@
         },
         "notify": {
             "title": "Thông báo"
+        },
+        "permission": {
+            "unauthorized": {
+                "actions": {
+                    "search": "Bạn không có quyền tìm kiếm hành động"
+                }
+            }
         }
     }
 }
