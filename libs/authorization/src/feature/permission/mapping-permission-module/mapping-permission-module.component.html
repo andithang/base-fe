@@ -18,7 +18,9 @@
             [nzChecked]="checklistSelection.isSelected(node)"
             (nzClick)="leafItemSelectionToggle(node)"
           ></nz-tree-node-checkbox>
-        <span [innerHTML]="node.name | nzHighlight: searchValue:'i':'highlight'"></span>
+          <nz-tree-node-option (nzClick)="itemSelectionToggle(node)">
+            <span [innerHTML]="node.name | nzHighlight: searchValue:'i':'highlight'"></span>
+          </nz-tree-node-option>
       </nz-tree-node>
 
       <nz-tree-node *nzTreeNodeDef="let node; when: hasChild" nzTreeNodePadding>
@@ -31,7 +33,9 @@
             [nzIndeterminate]="descendantsPartiallySelected(node)"
             (nzClick)="itemSelectionToggle(node)"
           ></nz-tree-node-checkbox>
-        <span [innerHTML]="node.name | nzHighlight: searchValue:'i':'highlight'"></span>
+          <nz-tree-node-option (nzClick)="itemSelectionToggle(node)">
+            <span [innerHTML]="node.name | nzHighlight: searchValue:'i':'highlight'"></span>
+          </nz-tree-node-option>
       </nz-tree-node>
     </nz-tree-virtual-scroll-view>
   </ng-container>
