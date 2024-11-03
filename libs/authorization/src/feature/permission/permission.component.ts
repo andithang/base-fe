@@ -17,11 +17,13 @@ import { NgxTrimDirectiveModule } from 'ngx-trim-directive';
 import { PermissionService } from '../../service/permission.service';
 import { Permission } from '../../data-access/permission.model';
 import { PermissionFormComponent } from './permission-form/permission-form.component';
-import { ActionCodesConfig, ActionCodesPagesInjection, HasPermissionDirective, HEADER_TOTAL } from '@base-fe/authorization';
 import { SearchWithPagination } from '../../data-access/page-size';
 import { MappingPermissionModuleComponent } from './mapping-permission-module/mapping-permission-module.component';
 import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
 import { PermissionCheckerService } from '../../shared/permission-checker';
+import { HEADER_TOTAL } from '../../data-access/constant';
+import { ActionCodesPagesInjection, ActionCodesConfig } from '../../data-access/module-config';
+import { HasPermissionDirective } from '../../shared/directive/has-permission.directive';
 
 @Component({
   selector: 'base-fe-permission',

@@ -3,5 +3,10 @@
   "dest": "../../dist/libs/authorization",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "ngx-trim-directive",
+    "moment",
+    "@ngx-translate/core"
+  ]
 }
