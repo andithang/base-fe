@@ -1,6 +1,6 @@
 {
   "name": "@base-fe/authorization",
-  "version": "0.0.1-alpha.5",
+  "version": "0.0.1-alpha.7",
   "peerDependencies": {
     "@angular/common": "^14.2.0",
     "@angular/core": "^14.2.0"
@@ -9,6 +9,7 @@
     "ngx-trim-directive": "^1.0.11",
     "moment": "^2.30.1",
     "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "tslib": "^2.3.0"
   }
 }
