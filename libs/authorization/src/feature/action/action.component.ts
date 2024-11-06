@@ -24,7 +24,7 @@ import { ActionCodesConfig, ActionCodesPagesInjection } from "../../data-access/
 import { PermissionCheckerService } from "../../shared/permission-checker";
 import { HasPermissionDirective } from "../../shared/directive/has-permission.directive";
 import { BaseFeAppService } from "../../service/app.service";
-import { Subject, takeUntil } from "rxjs";
+import { Subject, take, takeUntil } from "rxjs";
 
 @Component({
   selector: "base-fe-action",
@@ -96,7 +96,7 @@ export class ActionComponent implements OnInit, OnDestroy {
         }, () => this.loading = false);
     } else {
       this.loading = false;
-      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permission.unauthorized.actions.search'));
+      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.actions.permission.unauthorized.actions.search'));
     }
   }
 
@@ -111,7 +111,7 @@ export class ActionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$)).subscribe(() => {
+    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$), take(1)).subscribe(() => {
       this.getListActions();
     })
   }

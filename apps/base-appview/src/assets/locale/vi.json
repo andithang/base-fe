@@ -64,13 +64,6 @@
         },
         "notify": {
           "title": "Thông báo"
-        },
-        "permission": {
-          "unauthorized": {
-            "actions": {
-              "search": "Bạn không có quyền tìm kiếm hành động"
-            }
-          }
         }
       },
       "message": {
@@ -78,6 +71,13 @@
         "insert-fail": "Thêm mới hành động thất bại",
         "edit-success": "Cập nhật hành động thành công",
         "edit-fail": "Cập nhật hành động thất bại"
+      },
+      "permission": {
+        "unauthorized": {
+          "actions": {
+            "search": "Bạn không có quyền tìm kiếm hành động"
+          }
+        }
       }
     },
     "permissions": {
@@ -110,6 +110,13 @@
         "delete-fail": "Xóa quyền thất bại",
         "mapping-success": "Cấu hình quyền thành công",
         "mapping-fail": "Cấu hình quyền thất bại"
+      },
+      "permission": {
+        "unauthorized": {
+          "actions": {
+            "search": "Bạn không có quyền tìm kiếm quyền"
+          }
+        }
       }
     },
     "modules": {
@@ -144,6 +151,13 @@
         "edit-fail": "Cập nhật module thất bại",
         "mapping-success": "Gán module action thành công",
         "mapping-fail": "Gán module action thất bại"
+      },
+      "permission": {
+        "unauthorized": {
+          "actions": {
+            "search": "Bạn không có quyền tìm kiếm module"
+          }
+        }
       }
     },
     "notify": {

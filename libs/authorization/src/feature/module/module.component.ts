@@ -25,7 +25,7 @@ import { HasPermissionDirective } from '../../shared/directive/has-permission.di
 import { ActionCodesPagesInjection, ActionCodesConfig } from '../../data-access/module-config';
 import { BaseFeAppService } from '../../service/app.service';
 import { PermissionCheckerService } from '../../shared/permission-checker';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'base-fe-module',
@@ -90,7 +90,7 @@ export class ModuleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$)).subscribe(() => {
+    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$), take(1)).subscribe(() => {
       this.getListParentModules();
       this.getListModules();
     })
@@ -110,7 +110,7 @@ export class ModuleComponent implements OnInit, OnDestroy {
         }, () => this.loading = false);
     } else {
       this.loading = false;
-      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permission.unauthorized.actions.search'));
+      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.modules.permission.unauthorized.actions.search'));
     }
   }
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -24,6 +24,8 @@ import { PermissionCheckerService } from '../../shared/permission-checker';
 import { HEADER_TOTAL } from '../../data-access/constant';
 import { ActionCodesPagesInjection, ActionCodesConfig } from '../../data-access/module-config';
 import { HasPermissionDirective } from '../../shared/directive/has-permission.directive';
+import { BaseFeAppService } from '../../service/app.service';
+import { Subject, take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'base-fe-permission',
@@ -51,7 +53,7 @@ import { HasPermissionDirective } from '../../shared/directive/has-permission.di
     HasPermissionDirective
   ],
 })
-export class PermissionComponent implements OnInit {
+export class PermissionComponent implements OnInit, OnDestroy {
 
   constructor(
     private translateService: TranslateService,
@@ -60,6 +62,7 @@ export class PermissionComponent implements OnInit {
     private notify: NzNotificationService,
     @Inject(ActionCodesPagesInjection) readonly actionCodesPages: ActionCodesConfig,
     private permissionChecker: PermissionCheckerService,
+    private appService: BaseFeAppService
   ) { }
 
   listPermissions: Permission[] = [];
@@ -74,9 +77,18 @@ export class PermissionComponent implements OnInit {
     name: new FormControl(''),
     status: new FormControl(null),
   })
+  private destroy$ = new Subject<void>();
 
   ngOnInit() {
-    this.getListPermission();
+    this.appService.translationLoaded$.pipe(takeUntil(this.destroy$), take(1)).subscribe((params) => {
+      console.log(params);
+      this.getListPermission();
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private getListPermission() {
@@ -93,7 +105,7 @@ export class PermissionComponent implements OnInit {
         }, () => this.loading = false);
     } else {
       this.loading = false;
-      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permission.unauthorized.actions.search'));
+      this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.permissions.permission.unauthorized.actions.search'));
     }
   }
 
