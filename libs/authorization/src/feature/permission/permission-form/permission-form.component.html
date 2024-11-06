@@ -1,5 +1,5 @@
 <div class="authorization-permissions-form-card">
-  <form [formGroup]="formPermission" nz-row [nzGutter]="16">
+  <form [formGroup]="formPermission" nz-row [nzGutter]="16" nz-form [nzLayout]="'vertical'">
     <div class="form-grid-item" nz-col [nzMd]="12" [nzSm]="24">
       <nz-form-item>
         <nz-form-label nzFor="code" nzRequired>{{ "base-fe.permissions.code" | translate }}</nz-form-label>

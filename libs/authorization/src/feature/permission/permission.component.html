@@ -2,7 +2,7 @@
   <nz-card class="authorization-permissions-card" [nzBordered]="false" [nzTitle]="cardTitleTpl" [nzExtra]="extraTpl">
     <!-- search form -->
     <div class="search-form-container">
-      <form nz-form [formGroup]="formSearch">
+      <form nz-form [formGroup]="formSearch" nz-form [nzLayout]="'vertical'">
         <div class="form-search-grid" nz-row [nzGutter]="16">
           <div class="form-grid-item" nz-col [nzSpan]="8">
             <nz-form-item>
@@ -17,8 +17,7 @@
             <nz-form-item>
               <nz-form-label nzFor="name">{{ "base-fe.permissions.name" | translate }}</nz-form-label>
               <nz-form-control>
-                <input nz-input name="name" type="text" id="name" formControlName="name" trim="blur"
-                  [baseFeHasPermission]="actionCodesPages.permissionPage.search" (keyup.enter)="search()">
+                <input nz-input name="name" type="text" id="name" formControlName="name" trim="blur" (keyup.enter)="search()">
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -37,7 +36,7 @@
         </div>
       </form>
       <div class="search-btn-container">
-        <button nz-button (click)="search()"><span nz-icon nzType="search" nzTheme="outline"></span> {{
+        <button nz-button (click)="search()" [baseFeHasPermission]="actionCodesPages.permissionPage.search"><span nz-icon nzType="search" nzTheme="outline"></span> {{
           'base-fe.common.search' | translate }}</button>
       </div>
     </div>
