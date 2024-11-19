@@ -1,7 +1,6 @@
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
-  AccessTokenInjection,
   ActionCodesPagesInjection,
   InterceptHandlerInjection,
   ModuleConfig,
@@ -33,7 +32,6 @@ export class BaseAuthorizationModule {
             interceptErrorHandler: config.interceptErrorHandler,
           },
         },
-        { provide: AccessTokenInjection, useFactory: config.getTokenFactory },
         {
           provide: ActionCodesPagesInjection, useValue: config.ACTION_CODES_PAGES
         },

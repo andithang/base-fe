@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { BaseAuthorizationModule, DEFAULT_ACTION_CODES } from '@base-fe/authorization';
+import { AccessTokenInjection, BaseAuthorizationModule, DEFAULT_ACTION_CODES } from '@base-fe/authorization';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -14,14 +14,11 @@ import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
 import { dataActions } from '../data/actions';
+import { AppTokenProviderService } from './token-provider.service';
 registerLocaleData(vi);
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
-}
-
-function getTokenFactory() {
-  return localStorage.getItem('Authorization') || '';
 }
 
 const icons: IconDefinition[] = [
@@ -35,8 +32,7 @@ const icons: IconDefinition[] = [
     BrowserModule,
     BrowserAnimationsModule,
     BaseAuthorizationModule.forRoot({
-      SERVER_URL: "http://103.143.206.116:8084/api",
-      getTokenFactory,
+      SERVER_URL: "http://103.143.206.116:8089/api",
       interceptErrorHandler(evt) {
         console.log(evt);
       },
@@ -71,7 +67,8 @@ const icons: IconDefinition[] = [
     NzIconModule.forRoot(icons),
   ],
   providers: [
-    { provide: NZ_I18N, useValue: vi_VN }
+    { provide: NZ_I18N, useValue: vi_VN },
+    { provide: AccessTokenInjection, useClass: AppTokenProviderService },
   ],
   bootstrap: [AppComponent],
 })

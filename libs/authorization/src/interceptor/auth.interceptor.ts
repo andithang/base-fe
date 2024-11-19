@@ -10,13 +10,14 @@ import {
 } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { AccessTokenInjection, InterceptHandlerInjection, InterceptorHandler, ServerUrlInjection } from "../data-access/module-config";
+import { TokenProviderService } from "../service/token-provider.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
     @Inject(ServerUrlInjection) private serverUrl: string,
-    @Inject(AccessTokenInjection) private accessToken: string,
+    @Inject(AccessTokenInjection) private accessToken: TokenProviderService,
     @Inject(InterceptHandlerInjection) private handlers: InterceptorHandler,
   ) {}
 
@@ -35,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.accessToken) {
       request = request.clone({
         setHeaders: {
-          Authorization: this.accessToken,
+          Authorization: this.accessToken.getToken(),
           "Accept-Language": "vi",
         },
       });

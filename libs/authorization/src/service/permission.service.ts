@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { AccessTokenInjection, ServerUrlInjection } from '../data-access/module-config';
+import { ServerUrlInjection } from '../data-access/module-config';
 import { createRequestOption } from './request-util';
 import { SearchWithPagination } from '../data-access/page-size';
 import { Permission, PermissionForm, PermissionMapper, PermissionMapperRequest, PermissionQuery } from '../data-access/permission.model';
@@ -10,10 +10,8 @@ import { Permission, PermissionForm, PermissionMapper, PermissionMapperRequest, 
 export class PermissionService {
   constructor(
     private http: HttpClient,
-    @Inject(AccessTokenInjection) private accessToken: string,
     @Inject(ServerUrlInjection) private serverUrl: string,
   ) {
-    console.log(accessToken)
   }
 
   doSearch(data: PermissionQuery, req: SearchWithPagination) {

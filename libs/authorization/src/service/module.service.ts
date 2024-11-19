@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { AccessTokenInjection, ServerUrlInjection } from '../data-access/module-config';
+import { ServerUrlInjection } from '../data-access/module-config';
 import { createRequestOption } from './request-util';
 import { SearchWithPagination } from '../data-access/page-size';
 import { ModuleQuery, ModuleForm, Module, ParentModule, ModuleAction } from '../data-access/module.model';
@@ -10,10 +10,8 @@ import { ModuleQuery, ModuleForm, Module, ParentModule, ModuleAction } from '../
 export class ModuleService {
   constructor(
     private http: HttpClient,
-    @Inject(AccessTokenInjection) private accessToken: string,
     @Inject(ServerUrlInjection) private serverUrl: string,
   ) {
-    console.log(accessToken)
   }
 
   doSearch(data: ModuleQuery, req: SearchWithPagination) {

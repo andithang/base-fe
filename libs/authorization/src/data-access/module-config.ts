@@ -1,10 +1,11 @@
-import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
+  import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { InjectionToken } from "@angular/core";
 import { ActionAllowed, ActionPermission, ModulePermission, PermissionPagePermission } from "./permission-config";
 import { DEFAULT_ACTION_CODES } from "./constant";
+import { TokenProviderService } from "../service/token-provider.service";
 
 export const ServerUrlInjection = new InjectionToken<string>("base-fe-server-url");
-export const AccessTokenInjection = new InjectionToken<string>('base-fe-access-token');
+export const AccessTokenInjection = new InjectionToken<TokenProviderService>('base-fe-access-token');
 export const InterceptHandlerInjection = new InjectionToken<string>('base-fe-interceptor');
 export const UserPermissionInjection = new InjectionToken<string>("base-fe-user-permission");
 export const ActionCodesPagesInjection = new InjectionToken<string>("base-fe-action-code-pages");
@@ -17,11 +18,6 @@ export class ModuleConfig {
   ACTION_CODES_PAGES: ActionCodesConfig = DEFAULT_ACTION_CODES;
   interceptSuccessHandler: ((evt: HttpResponse<unknown>) => void) | undefined = undefined;
   interceptErrorHandler: ((evt: HttpErrorResponse) => void) | undefined = undefined;
-  /**
-   * the function used to get the access token
-   * @returns the access token used to call the API endpoints
-   */
-  getTokenFactory: () => string = () => "";
   /**
    * @returns current user's permission on all pages
    */
