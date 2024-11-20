@@ -16,3 +16,5 @@ export * from './shared/pipe/status.pipe';
 
 // services
 export * from './service/token-provider.service';
+export * from './service/user-permission-provider.service';
+export * from './shared/permission-checker';

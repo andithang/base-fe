@@ -42,44 +42,78 @@ const DEFAULT_ACTION_CODES: ActionCodesConfig = {
 };
 ```
 
-### Define how to get the user's permission. Example:
+### Define how to get the user's permission by extending the UserPermissionService class. Example:
 
 ```ts
-const getUserPermission = () => [
-  {
-    id: 31,
-    title: "Action",
-    code: "ADMIN_ACTION",
-    link: "/pages/sys-config/actions",
-    role: [
+import { Injectable } from '@angular/core';
+import { UserPermission, UserPermissionService } from '@base-fe/authorization';
+
+@Injectable({providedIn: 'root'})
+export class AppUserPermissionService extends UserPermissionService {
+
+  override getUserPermission(): UserPermission[] {
+    return [
       {
-        id: null,
-        codeAction: "INSERT",
-        nameAciton: null,
-        nameModel: null,
-      },
-      {
-        id: null,
-        codeAction: "SEARCH",
-        nameAciton: null,
-        nameModel: null,
-      },
-      {
-        id: null,
-        codeAction: "UPDATE",
-        nameAciton: null,
-        nameModel: null,
-      },
-    ],
-  },
-];
+        "id": 31,
+        "title": "Action",
+        "code": "ADMIN_ACTION",
+        "link": "/pages/sys-config/actions",
+        "role": [
+          {
+            "id": null,
+            "codeAction": "INSERT",
+            "nameAciton": null,
+            "nameModel": null
+          },
+          {
+            "id": null,
+            "codeAction": "SEARCH",
+            "nameAciton": null,
+            "nameModel": null
+          },
+          {
+            "id": null,
+            "codeAction": "UPDATE",
+            "nameAciton": null,
+            "nameModel": null
+          }
+        ]
+      }
+    ]
+  }
+  
+}
+```
+
+### Use the same way to configure a provider for AccessTokenInjection
+
+```ts
+import { Injectable } from '@angular/core';
+import { TokenProviderService } from '@base-fe/authorization';
+
+@Injectable({providedIn: 'root'})
+export class AppTokenProviderService extends TokenProviderService {
+
+  override getToken(): string {
+    return localStorage.getItem('Authorization') || '';
+  }
+   
+}
+```
+
+### Then use the class as the provider for UserPermissionInjection token in the app.module.ts
+```ts
+providers: [
+    { provide: AccessTokenInjection, useClass: AppTokenProviderService },
+    { provide: UserPermissionInjection, useClass: AppTokenProviderService },
+  ],
 ```
 
 ### Example full configuration
 
 ```ts
 BaseAuthorizationModule.forRoot({
-  SERVER_URL: "http://103.143.206.116:8084/api",
+  SERVER_URL: "https://example.com/api",
   getTokenFactory,
   interceptErrorHandler(evt) {
     console.log(evt);
@@ -87,34 +121,6 @@ BaseAuthorizationModule.forRoot({
   interceptSuccessHandler(evt) {
     console.log(evt);
   },
-  ACTION_CODES_PAGES: DEFAULT_ACTION_CODES,
-  getUserPermission: () => ([
-    {
-      "id": 31,
-      "title": "Action",
-      "code": "ADMIN_ACTION",
-      "link": "/pages/sys-config/actions",
-      "role": [
-        {
-          "id": null,
-          "codeAction": "INSERT",
-          "nameAciton": null,
-          "nameModel": null
-        },
-        {
-          "id": null,
-          "codeAction": "SEARCH",
-          "nameAciton": null,
-          "nameModel": null
-        },
-        {
-          "id": null,
-          "codeAction": "UPDATE",
-          "nameAciton": null,
-          "nameModel": null
-        }
-      ]
-    }
-  ]),
+  ACTION_CODES_PAGES: DEFAULT_ACTION_CODES
 }),
 ```

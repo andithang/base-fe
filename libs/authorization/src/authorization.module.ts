@@ -5,7 +5,6 @@ import {
   InterceptHandlerInjection,
   ModuleConfig,
   ServerUrlInjection,
-  UserPermissionInjection,
 } from "./data-access/module-config";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthInterceptor } from "./interceptor/auth.interceptor";
@@ -34,9 +33,6 @@ export class BaseAuthorizationModule {
         },
         {
           provide: ActionCodesPagesInjection, useValue: config.ACTION_CODES_PAGES
-        },
-        {
-          provide: UserPermissionInjection, useFactory: config.getUserPermission
         }
       ],
     };

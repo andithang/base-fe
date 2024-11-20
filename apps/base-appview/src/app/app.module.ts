@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { AccessTokenInjection, BaseAuthorizationModule, DEFAULT_ACTION_CODES } from '@base-fe/authorization';
+import { AccessTokenInjection, BaseAuthorizationModule, DEFAULT_ACTION_CODES, UserPermissionInjection } from '@base-fe/authorization';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -15,6 +15,7 @@ import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
 import { dataActions } from '../data/actions';
 import { AppTokenProviderService } from './token-provider.service';
+import { AppUserPermissionService } from './user-permission.service';
 registerLocaleData(vi);
 
 export function createTranslateLoader(http: HttpClient) {
@@ -39,8 +40,7 @@ const icons: IconDefinition[] = [
       interceptSuccessHandler(evt) {
         console.log(evt);
       },
-      ACTION_CODES_PAGES: DEFAULT_ACTION_CODES,
-      getUserPermission: () => dataActions,
+      ACTION_CODES_PAGES: DEFAULT_ACTION_CODES
     }),
     RouterModule.forRoot([
       {
@@ -69,6 +69,7 @@ const icons: IconDefinition[] = [
   providers: [
     { provide: NZ_I18N, useValue: vi_VN },
     { provide: AccessTokenInjection, useClass: AppTokenProviderService },
+    { provide: UserPermissionInjection, useClass: AppUserPermissionService },
   ],
   bootstrap: [AppComponent],
 })

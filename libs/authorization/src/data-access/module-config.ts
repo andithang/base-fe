@@ -7,7 +7,7 @@ import { TokenProviderService } from "../service/token-provider.service";
 export const ServerUrlInjection = new InjectionToken<string>("base-fe-server-url");
 export const AccessTokenInjection = new InjectionToken<TokenProviderService>('base-fe-access-token');
 export const InterceptHandlerInjection = new InjectionToken<string>('base-fe-interceptor');
-export const UserPermissionInjection = new InjectionToken<string>("base-fe-user-permission");
+export const UserPermissionInjection = new InjectionToken<UserPermission[]>("base-fe-user-permission");
 export const ActionCodesPagesInjection = new InjectionToken<string>("base-fe-action-code-pages");
 
 export class ModuleConfig {
@@ -18,10 +18,6 @@ export class ModuleConfig {
   ACTION_CODES_PAGES: ActionCodesConfig = DEFAULT_ACTION_CODES;
   interceptSuccessHandler: ((evt: HttpResponse<unknown>) => void) | undefined = undefined;
   interceptErrorHandler: ((evt: HttpErrorResponse) => void) | undefined = undefined;
-  /**
-   * @returns current user's permission on all pages
-   */
-  getUserPermission: () => UserPermission[] = () => ([]);
 }
 
 
