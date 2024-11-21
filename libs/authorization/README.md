@@ -7,16 +7,6 @@
 For example: http://192.168.0.2/api
 => No "/" at the end!
 
-### Configure getTokenFactory: a function used to retrieve the token provided to call APIs. It is attached to 'Authorization' header when the request is sent
-
-For example:
-
-```ts
-function getTokenFactory() {
-  return localStorage.getItem("Authorization") || "";
-}
-```
-
 ### Configure interceptors' callback: 2 callbacks you can use to hanlde the requests in interceptors. One when success, one when failure
 
 ```ts
@@ -114,7 +104,6 @@ providers: [
 ```ts
 BaseAuthorizationModule.forRoot({
   SERVER_URL: "https://example.com/api",
-  getTokenFactory,
   interceptErrorHandler(evt) {
     console.log(evt);
   },

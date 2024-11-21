@@ -30,7 +30,9 @@ export class AppUserPermissionService extends UserPermissionService {
             "nameAciton": null,
             "nameModel": null
           }
-        ]
+        ],
+        parenId: 0,
+        icon: ''
       }
     ]
   }

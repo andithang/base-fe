@@ -2,7 +2,7 @@ import { UserPermission } from "@base-fe/authorization";
 
 export const dataActions: UserPermission[] = [
   {
-    "id": 335,    
+    "id": 335,
     "title": "Cấu hình Ftp",
     "code": "ConfigFtp",
     "link": "/pages/hotel-management/config-ftp",
@@ -13,10 +13,12 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
-    "id": 329,    
+    "id": 329,
     "title": "Cấu hình khách sạn",
     "code": "HotelConfig",
     "link": "/pages/hotel-management/hotel-config",
@@ -81,10 +83,12 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
-    "id": 334,    
+    "id": 334,
     "title": "Giám sát trạng thái phòng",
     "code": "HistoryStatus",
     "link": "/pages/hotel-management/history-status",
@@ -95,10 +99,12 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
-    "id": 27,    
+    "id": 27,
     "title": "Quản lý phân quyền",
     "code": "QuanLyPhanQuyen",
     "link": "/pages/sys-config",
@@ -109,10 +115,12 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
-    "id": 29,    
+    "id": 29,
     "title": "Nhóm quyền",
     "code": "ADMIN_ROLE",
     "link": "/pages/sys-config/role-module",
@@ -147,10 +155,12 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
-    "id": 28,    
+    "id": 28,
     "title": "Người dùng",
     "code": "ADMIN_USER",
     "link": "/pages/sys-config/users",
@@ -185,10 +195,12 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
-    "id": 31,    
+    "id": 31,
     "title": "Action",
     "code": "ADMIN_ACTION",
     "link": "/pages/sys-config/actions",
@@ -211,7 +223,9 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
     "id": 328,
@@ -225,10 +239,12 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   },
   {
-    "id": 30,    
+    "id": 30,
     "title": "Module",
     "code": "ADMIN_MODULE",
     "link": "/pages/sys-config/modules",
@@ -257,6 +273,8 @@ export const dataActions: UserPermission[] = [
         "nameAciton": null,
         "nameModel": null
       }
-    ]
+    ],
+    parenId: 0,
+    icon: ""
   }
 ]

@@ -32,6 +32,8 @@ export interface UserPermission {
   link: string;
   title: string;
   role: ActionAllowed[];
+  parenId?: number;
+  icon?: string;
 }
 
 export interface ActionCodesConfig {
