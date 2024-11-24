@@ -3,9 +3,8 @@
     <div class="form-search-grid" nz-row [nzGutter]="16">
       <div class="form-grid-item" nz-col [nzSpan]="12">
         <nz-form-item>
-          <nz-form-label nzFor="code">{{ "base-fe.actions.code" | translate }}</nz-form-label>
           <nz-form-control>
-            <input nz-input name="code" type="text" id="code" formControlName="code" trim="blur"
+            <input nz-input name="code" type="text" id="code" formControlName="code" trim="blur" placeholder="{{ 'base-fe.actions.enter-code' | translate }}"
               (keyup.enter)="search()">
           </nz-form-control>
         </nz-form-item>

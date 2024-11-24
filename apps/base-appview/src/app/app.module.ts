@@ -13,7 +13,6 @@ import { DeleteFill, DeleteOutline, EditFill, EditOutline, LinkOutline, PlusOutl
 import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
-import { dataActions } from '../data/actions';
 import { AppTokenProviderService } from './token-provider.service';
 import { AppUserPermissionService } from './user-permission.service';
 registerLocaleData(vi);

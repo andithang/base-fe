@@ -17,8 +17,7 @@
             <nz-form-item>
               <nz-form-label nzFor="name">{{ "base-fe.modules.name" | translate }}</nz-form-label>
               <nz-form-control>
-                <input nz-input name="name" type="text" id="name" formControlName="name" trim="blur"
-                  [baseFeHasPermission]="actionCodesPages.modulePage.search" (keyup.enter)="search()">
+                <input nz-input name="name" type="text" id="name" formControlName="name" trim="blur" (keyup.enter)="search()">
               </nz-form-control>
             </nz-form-item>
           </div>
@@ -54,7 +53,7 @@
       </div>
     </div>
     <!-- table modules -->
-    <nz-table #modulesTbl [nzData]="listModules" [nzFrontPagination]="false" [nzTotal]="total"
+    <nz-table #modulesTbl [nzData]="listModules" [nzFrontPagination]="false" [nzTotal]="total" [nzPageIndex]="pagination.page + 1"
       [nzPageSize]="pagination.size" (nzPageIndexChange)="onChangePageIndex($event)" [nzShowTotal]="totalTpl"
       [nzNoResult]="noDataTpl" [nzLoading]="loading">
       <thead>

@@ -48,7 +48,7 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
     return next.handle(request).pipe(
-      tap(
+      tap( // only perform side effects like logging, the emitted values will not be affected
         (event: HttpEvent<unknown>) => {
           if (event instanceof HttpResponse) {
             if(this.handlers.interceptSuccessHandler) this.handlers.interceptSuccessHandler(event);

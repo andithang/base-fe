@@ -21,7 +21,7 @@ import { SearchWithPagination } from '../../data-access/page-size';
 import { MappingPermissionModuleComponent } from './mapping-permission-module/mapping-permission-module.component';
 import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
 import { PermissionCheckerService } from '../../shared/permission-checker';
-import { HEADER_TOTAL } from '../../data-access/constant';
+import { HEADER_TOTAL, MODAL_SIZES } from '../../data-access/constant';
 import { ActionCodesPagesInjection, ActionCodesConfig } from '../../data-access/module-config';
 import { HasPermissionDirective } from '../../shared/directive/has-permission.directive';
 import { BaseFeAppService } from '../../service/app.service';
@@ -139,7 +139,8 @@ export class PermissionComponent implements OnInit, OnDestroy {
     const ref = this.modal.create({
       nzTitle: this.translateService.instant('base-fe.permissions.create-permission'),
       nzContent: PermissionFormComponent,
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: MODAL_SIZES.medium
     });
     ref.afterClose.subscribe(isSubmitted => {
       if (isSubmitted) {
@@ -155,7 +156,8 @@ export class PermissionComponent implements OnInit, OnDestroy {
       nzComponentParams: {
         permission
       },
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: MODAL_SIZES.medium
     });
     ref.afterClose.subscribe(isSubmitted => {
       if (isSubmitted) {

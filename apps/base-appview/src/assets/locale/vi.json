@@ -22,6 +22,7 @@
       "title": "Quản lý hành động",
       "create-btn": "Thêm mới hành động",
       "name": "Tên hành động",
+      "enter-code": "Nhập tên hành động",
       "code": "Mã hành động",
       "delete-success": "Xóa hành động thành công",
       "delete-failed": "Xóa hành động thất bại",

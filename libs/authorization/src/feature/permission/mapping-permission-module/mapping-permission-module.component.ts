@@ -289,13 +289,13 @@ export class MappingPermissionModuleComponent implements OnInit {
     const arr: TreeNode[]= [];
     for (let i = 0; i < data.length; i++) {
       const dataItem = data[i];
-      const splitPerissions = data[i].value.split('#');
+      const splitPermissions = data[i].value.split('#');
       const dataNode: TreeNode = {
         name: data[i].text,
         roleId: this.permission.id,
-        moduleCode: splitPerissions[0],
-        actionCode: splitPerissions[1],
-        checked: !!splitPerissions[0] && !!splitPerissions[1],
+        moduleCode: splitPermissions[0],
+        actionCode: splitPermissions[1],
+        checked: !!splitPermissions[0] && !!splitPermissions[1],
         value: data[i].value
       }
       if (dataItem.parentId === parentId) {

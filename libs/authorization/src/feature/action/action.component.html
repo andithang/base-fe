@@ -47,6 +47,7 @@
       [nzData]="listActions"
       [nzFrontPagination]="false"
       [nzTotal]="total"
+      [nzPageIndex]="pagination.page + 1"
       [nzPageSize]="pagination.size"
       (nzPageIndexChange)="onChangePageIndex($event)"
       [nzShowTotal]="totalTpl"

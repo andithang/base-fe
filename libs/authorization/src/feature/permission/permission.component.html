@@ -41,7 +41,7 @@
       </div>
     </div>
     <!-- table permissions -->
-    <nz-table #permissionsTbl [nzData]="listPermissions" [nzFrontPagination]="false" [nzTotal]="total"
+    <nz-table #permissionsTbl [nzData]="listPermissions" [nzFrontPagination]="false" [nzTotal]="total" [nzPageIndex]="pagination.page + 1"
       [nzPageSize]="pagination.size" (nzPageIndexChange)="onChangePageIndex($event)" [nzShowTotal]="totalTpl"
       [nzNoResult]="noDataTpl" [nzLoading]="loading">
       <thead>

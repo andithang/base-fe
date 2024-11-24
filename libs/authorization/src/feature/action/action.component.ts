@@ -3,7 +3,7 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ActionService } from "../../service/action.service";
 import { Action } from "../../data-access/action.model";
 import { SearchWithPagination } from "../../data-access/page-size";
-import { HEADER_TOTAL } from "../../data-access/constant";
+import { HEADER_TOTAL, MODAL_SIZES } from "../../data-access/constant";
 import { NzTableModule } from "ng-zorro-antd/table";
 import { NzCardModule } from "ng-zorro-antd/card";
 import { NzButtonModule } from "ng-zorro-antd/button";
@@ -136,7 +136,8 @@ export class ActionComponent implements OnInit, OnDestroy {
     const ref = this.modal.create({
       nzTitle: this.translateService.instant('base-fe.actions.create-action'),
       nzContent: ActionFormComponent,
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: MODAL_SIZES.medium
     });
     ref.afterClose.subscribe(isSubmitted => {
       if(isSubmitted) {
@@ -152,7 +153,8 @@ export class ActionComponent implements OnInit, OnDestroy {
       nzComponentParams: {
         action
       },
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: MODAL_SIZES.medium
     });
     ref.afterClose.subscribe(isSubmitted => {
       if(isSubmitted) {

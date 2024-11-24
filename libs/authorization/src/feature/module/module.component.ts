@@ -9,7 +9,7 @@ import { ModuleService } from '../../service/module.service';
 import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SearchWithPagination } from '../../data-access/page-size';
-import { HEADER_TOTAL } from '../../data-access/constant';
+import { HEADER_TOTAL, MODAL_SIZES } from '../../data-access/constant';
 import { Module, ParentModule } from '../../data-access/module.model';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
@@ -150,7 +150,8 @@ export class ModuleComponent implements OnInit, OnDestroy {
     const ref = this.modal.create({
       nzTitle: this.translateService.instant('base-fe.modules.create-module'),
       nzContent: ModuleFormComponent,
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: MODAL_SIZES.medium
     });
     ref.afterClose.subscribe(isSubmitted => {
       if (isSubmitted) {
@@ -166,7 +167,8 @@ export class ModuleComponent implements OnInit, OnDestroy {
       nzComponentParams: {
         module
       },
-      nzFooter: null
+      nzFooter: null,
+      nzWidth: MODAL_SIZES.medium
     });
     ref.afterClose.subscribe(isSubmitted => {
       if (isSubmitted) {

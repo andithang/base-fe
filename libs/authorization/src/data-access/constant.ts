@@ -44,3 +44,10 @@ export const DEFAULT_ACTION_CODES: ActionCodesConfig = {
     mapPermissionModule: "MAP_PERMISSION_MODULE"
   }
 }
+
+export const MODAL_SIZES = {
+  xlarge: 1400,
+  large: 1000,
+  medium: 700,
+  small: 520
+};

@@ -1,6 +1,6 @@
 {
   "name": "@base-fe/authorization",
-  "version": "0.0.1-test.1002",
+  "version": "0.0.1-test.1004",
   "peerDependencies": {
     "@angular/common": "^14.2.0",
     "@angular/core": "^14.2.0"
