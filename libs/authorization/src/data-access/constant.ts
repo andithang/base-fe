@@ -51,3 +51,5 @@ export const MODAL_SIZES = {
   medium: 700,
   small: 520
 };
+
+export const COMMON_SCROLL_TABLE = { x: '700px' };

@@ -63,7 +63,7 @@ export class ModuleFormComponent implements OnInit {
     pathUrl: new FormControl('', []),
     icon: new FormControl('', []),
     position: new FormControl('', []),
-    parentId: new FormControl('', [])
+    parentId: new FormControl(0, [])
   });
   getError = (control: string) => getError(this.formModule, control, this.translate, 'modules');
 
@@ -124,22 +124,16 @@ export class ModuleFormComponent implements OnInit {
     }
   }
 
-  formatDataTree(data: Module[], parentId: number | null) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const arr: any[] = [];
+  formatDataTree(data: Module[], parentId: number | null): NzTreeNodeOptions[] {
+    const arr: NzTreeNodeOptions[] = [];
     for (let i = 0; i < data.length; i++) {
       const dataItem = data[i];
       if (dataItem.parentId === parentId) {
-        let children = [];
-        if (dataItem.id) {
-          children = this.formatDataTree(data, dataItem.id);
+        let children: NzTreeNodeOptions[] = [];
+        if (data[i].id) {
+          children = this.formatDataTree(data, data[i].id);
         }
-        if (children.length > 0) {
-          dataItem.children = children;
-        } else {
-          dataItem.children = null;
-        }
-        const dataTreeview = { title: dataItem.name, key: dataItem.id.toString(), children: dataItem.children };
+        const dataTreeview = { title: dataItem.name, key: data[i].id.toString(), children };
         arr.push(dataTreeview);
       }
     }

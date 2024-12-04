@@ -13,8 +13,6 @@ export interface Module {
   position: number | null,
   codeAction?: string | null;
   role?: string | null;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children?: any;
 }
 
 export interface ParentModule {

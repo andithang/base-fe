@@ -3,7 +3,7 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ActionService } from "../../service/action.service";
 import { Action } from "../../data-access/action.model";
 import { SearchWithPagination } from "../../data-access/page-size";
-import { HEADER_TOTAL, MODAL_SIZES } from "../../data-access/constant";
+import { COMMON_SCROLL_TABLE, HEADER_TOTAL, MODAL_SIZES } from "../../data-access/constant";
 import { NzTableModule } from "ng-zorro-antd/table";
 import { NzCardModule } from "ng-zorro-antd/card";
 import { NzButtonModule } from "ng-zorro-antd/button";
@@ -74,7 +74,8 @@ export class ActionComponent implements OnInit, OnDestroy {
     code: new FormControl(''),
     name: new FormControl(''),
     status: new FormControl(null),
-  })
+  });
+  readonly commonScrollTable = COMMON_SCROLL_TABLE;
   private destroy$ = new Subject<void>();
 
   ngOnDestroy(): void {

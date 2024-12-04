@@ -55,27 +55,27 @@
     <!-- table modules -->
     <nz-table #modulesTbl [nzData]="listModules" [nzFrontPagination]="false" [nzTotal]="total" [nzPageIndex]="pagination.page + 1"
       [nzPageSize]="pagination.size" (nzPageIndexChange)="onChangePageIndex($event)" [nzShowTotal]="totalTpl"
-      [nzNoResult]="noDataTpl" [nzLoading]="loading">
+      [nzNoResult]="noDataTpl" [nzLoading]="loading" [nzScroll]="commonScrollTable">
       <thead>
         <tr>
-          <th nzAlign="center">{{ "base-fe.common.stt" | translate }}</th>
+          <th [nzWidth]="'60px'" [nzAlign]="'right'">{{ "base-fe.common.stt" | translate }}</th>
           <th>{{ "base-fe.modules.code" | translate }}</th>
           <th>{{ "base-fe.modules.name" | translate }}</th>
           <th>{{ "base-fe.common.updated-date" | translate }}</th>
-          <th>{{ "base-fe.common.status" | translate }}</th>
+          <th [nzWidth]="'120px'">{{ "base-fe.common.status" | translate }}</th>
           <th>{{ "base-fe.modules.path" | translate }}</th>
-          <th>{{ "base-fe.common.more-actions" | translate }}</th>
+          <th nzRight [nzWidth]="'160px'">{{ "base-fe.common.more-actions" | translate }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of modulesTbl.data; index as ind">
-          <td nzAlign="center">{{ ind + 1 + pagination.page * pagination.size }}</td>
+          <td [nzAlign]="'right'">{{ ind + 1 + pagination.page * pagination.size }}</td>
           <td>{{ data.code }}</td>
           <td>{{ data.name }}</td>
           <td>{{ data.updateTime | date: "dd/MM/yyyy hh:mm:ss" }}</td>
           <td>{{ data.status | statusCommon }}</td>
           <td>{{ data.pathUrl }}</td>
-          <td class="action-btns">
+          <td class="action-btns" nzRight>
             <button nz-button nzType="default" nzShape="circle" [title]="'base-fe.modules.edit-module'|translate"
               (click)="updateModule(data)" [baseFeHasPermission]="actionCodesPages.modulePage.update"><span nz-icon
                 nzType="edit" nzTheme="fill"></span></button>

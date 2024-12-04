@@ -12,7 +12,7 @@ export class AppUserPermissionService extends UserPermissionService {
         "title": "Nhóm quyền",
         "code": "ADMIN_ROLE",
         "icon": "audit",
-        "link": "/pages/sys-config/permissions",
+        "link": "/default/admin/authorization/permissions",
         "role": [
           {
             "id": null,
@@ -52,7 +52,7 @@ export class AppUserPermissionService extends UserPermissionService {
         "title": "Module",
         "code": "ADMIN_MODULE",
         "icon": "appstore",
-        "link": "/pages/sys-config/modules",
+        "link": "/default/admin/authorization/modules",
         "role": [
           {
             "id": null,
@@ -96,7 +96,7 @@ export class AppUserPermissionService extends UserPermissionService {
         "id": 31,
         "title": "Action",
         "code": "ADMIN_ACTION",
-        "link": "/pages/sys-config/actions",
+        "link": "/default/admin/authorization/actions",
         "role": [
           {
             "id": null,

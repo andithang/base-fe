@@ -53,25 +53,26 @@
       [nzShowTotal]="totalTpl"
       [nzNoResult]="noDataTpl"
       [nzLoading]="loading"
+      [nzScroll]="commonScrollTable"
     >
       <thead>
         <tr>
-          <th>{{ "base-fe.common.stt" | translate }}</th>
+          <th [nzWidth]="'60px'" [nzAlign]="'right'">{{ "base-fe.common.stt" | translate }}</th>
           <th>{{ "base-fe.actions.code" | translate }}</th>
           <th>{{ "base-fe.actions.name" | translate }}</th>
-          <th>{{ "base-fe.common.status" | translate }}</th>
+          <th [nzWidth]="'120px'">{{ "base-fe.common.status" | translate }}</th>
           <th>{{ "base-fe.common.created-date" | translate }}</th>
-          <th>{{ "base-fe.common.more-actions" | translate }}</th>
+          <th nzRight [nzWidth]="'160px'">{{ "base-fe.common.more-actions" | translate }}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let data of actionsTbl.data; index as ind">
-          <td>{{ ind + 1 + pagination.page * pagination.size }}</td>
+          <td [nzAlign]="'right'">{{ ind + 1 + pagination.page * pagination.size }}</td>
           <td>{{ data.code }}</td>
           <td>{{ data.name }}</td>
           <td>{{ data.status | statusCommon }}</td>
           <td>{{ data.updateTime | date: "dd/MM/yyyy hh:mm:ss" }}</td>
-          <td class="action-btns">
+          <td class="action-btns" nzRight>
             <button [baseFeHasPermission]="actionCodesPages.actionPage.update" nz-button nzType="default" nzShape="circle" (click)="updateAction(data)"><span nz-icon nzType="edit" nzTheme="fill"></span></button>
             <button [baseFeHasPermission]="actionCodesPages.actionPage.delete" nz-button nzDanger nzShape="circle" (click)="delete(data)"><span nz-icon nzType="delete" nzTheme="fill"></span></button>
           </td>

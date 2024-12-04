@@ -9,7 +9,7 @@ import { ModuleService } from '../../service/module.service';
 import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SearchWithPagination } from '../../data-access/page-size';
-import { HEADER_TOTAL, MODAL_SIZES } from '../../data-access/constant';
+import { COMMON_SCROLL_TABLE, HEADER_TOTAL, MODAL_SIZES } from '../../data-access/constant';
 import { Module, ParentModule } from '../../data-access/module.model';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
@@ -81,7 +81,8 @@ export class ModuleComponent implements OnInit, OnDestroy {
     name: new FormControl(''),
     status: new FormControl(null),
     parentId: new FormControl(null),
-  })
+  });
+  readonly commonScrollTable = COMMON_SCROLL_TABLE;
   private destroy$ = new Subject<void>();
 
   ngOnDestroy(): void {
@@ -139,7 +140,7 @@ export class ModuleComponent implements OnInit, OnDestroy {
           this.notify.success(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.modules.delete-success'));
           this.getListModules();
         }, () => {
-          this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.modules.delete-success'));
+          this.notify.error(this.translateService.instant('base-fe.notify.title'), this.translateService.instant('base-fe.modules.delete-failed'));
           this.loading = false;
         });
       }

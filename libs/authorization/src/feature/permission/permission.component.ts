@@ -21,7 +21,7 @@ import { SearchWithPagination } from '../../data-access/page-size';
 import { MappingPermissionModuleComponent } from './mapping-permission-module/mapping-permission-module.component';
 import { StatusCommonPipe } from '../../shared/pipe/status.pipe';
 import { PermissionCheckerService } from '../../shared/permission-checker';
-import { HEADER_TOTAL, MODAL_SIZES } from '../../data-access/constant';
+import { COMMON_SCROLL_TABLE, HEADER_TOTAL, MODAL_SIZES } from '../../data-access/constant';
 import { ActionCodesPagesInjection, ActionCodesConfig } from '../../data-access/module-config';
 import { HasPermissionDirective } from '../../shared/directive/has-permission.directive';
 import { BaseFeAppService } from '../../service/app.service';
@@ -76,7 +76,8 @@ export class PermissionComponent implements OnInit, OnDestroy {
     code: new FormControl(''),
     name: new FormControl(''),
     status: new FormControl(null),
-  })
+  });
+  readonly commonScrollTable = COMMON_SCROLL_TABLE;
   private destroy$ = new Subject<void>();
 
   ngOnInit() {

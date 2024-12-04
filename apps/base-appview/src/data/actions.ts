@@ -107,7 +107,7 @@ export const dataActions: UserPermission[] = [
     "id": 27,
     "title": "Quản lý phân quyền",
     "code": "QuanLyPhanQuyen",
-    "link": "/pages/sys-config",
+    "link": "/default/admin/authorization",
     "role": [
       {
         "id": null,
@@ -123,7 +123,7 @@ export const dataActions: UserPermission[] = [
     "id": 29,
     "title": "Nhóm quyền",
     "code": "ADMIN_ROLE",
-    "link": "/pages/sys-config/role-module",
+    "link": "/default/admin/authorization/role-module",
     "role": [
       {
         "id": null,
@@ -163,7 +163,7 @@ export const dataActions: UserPermission[] = [
     "id": 28,
     "title": "Người dùng",
     "code": "ADMIN_USER",
-    "link": "/pages/sys-config/users",
+    "link": "/default/admin/authorization/users",
     "role": [
       {
         "id": null,
@@ -203,7 +203,7 @@ export const dataActions: UserPermission[] = [
     "id": 31,
     "title": "Action",
     "code": "ADMIN_ACTION",
-    "link": "/pages/sys-config/actions",
+    "link": "/default/admin/authorization/actions",
     "role": [
       {
         "id": null,
@@ -247,7 +247,7 @@ export const dataActions: UserPermission[] = [
     "id": 30,
     "title": "Module",
     "code": "ADMIN_MODULE",
-    "link": "/pages/sys-config/modules",
+    "link": "/default/admin/authorization/modules",
     "role": [
       {
         "id": null,

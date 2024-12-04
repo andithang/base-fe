@@ -43,15 +43,15 @@ const icons: IconDefinition[] = [
     }),
     RouterModule.forRoot([
       {
-        path: "pages/sys-config/modules",
+        path: "default/admin/authorization/modules",
         loadComponent: () => import('@base-fe/authorization').then(m => m.ModuleComponent),
       },
       {
-        path: "pages/sys-config/permissions",
+        path: "default/admin/authorization/permissions",
         loadComponent: () => import('@base-fe/authorization').then(m => m.PermissionComponent),
       },
       {
-        path: "pages/sys-config/actions",
+        path: "default/admin/authorization/actions",
         loadComponent: () => import('@base-fe/authorization').then(m => m.ActionComponent)
       }
     ]),
