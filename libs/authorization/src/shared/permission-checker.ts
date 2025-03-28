@@ -12,7 +12,7 @@ export class PermissionCheckerService {
   ){}
 
   readonly isActionAllowed = (actionName: string) => {
-    const currRoute = this.router.url;
+    const currRoute = location.pathname;
     const currPagePers = this.userPermissions.getUserPermission().find(per => per.link == currRoute);
     if(!currPagePers || !currPagePers.role.find(act => act.codeAction == actionName)) return false;
     return true;
