@@ -2,14 +2,18 @@ import { Inject, Injectable } from "@angular/core";
 import { UserPermissionInjection } from "../data-access/module-config";
 import { Router } from "@angular/router";
 import { UserPermissionService } from "../service/user-permission-provider.service";
+import { UsageLoggerService } from "./usage-logger";
 
 @Injectable({ providedIn: 'root' })
 export class PermissionCheckerService {
 
   constructor(
     private router: Router,
+    private usageLoggerService: UsageLoggerService,
     @Inject(UserPermissionInjection) private readonly userPermissions: UserPermissionService
-  ){}
+  ){
+    this.usageLoggerService.init().subscribe();
+  }
 
   readonly isActionAllowed = (actionName: string) => {
     const currRoute = location.pathname;

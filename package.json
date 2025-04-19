@@ -9,8 +9,7 @@
     "build": "nx build",
     "test": "nx test",
     "build:authorization": "nx run-many --target=build --projects=libs-authorization",
-    "publish:authorization-alpha": "npm run build:authorization && npm publish ./dist/libs/authorization/ --access public --tag alpha",
-    "publish:authorization-test": "npm run build:authorization && npm publish ./dist/libs/authorization/ --access public --tag test"
+    "publish:authorization": "npm run build:authorization && npm publish ./dist/libs/authorization/ --access public"
   },
   "private": true,
   "dependencies": {
