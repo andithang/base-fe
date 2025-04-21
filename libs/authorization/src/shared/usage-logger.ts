@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+interface UsageLoggerResponse {
+  ok: boolean;
+  originAllowed: boolean;
+}
 
 @Injectable({providedIn: 'root'})
 export class UsageLoggerService {
@@ -9,13 +13,23 @@ export class UsageLoggerService {
   readonly loggerAPI = 'https://3h04ee9v4e.execute-api.us-east-1.amazonaws.com/dev';
   readonly apiKey = 'vsmnIy0uA7R1owPMLtgs3v4wnX13eOA6krgy2nv8';
 
-  init(): Observable<void> {
-    return this.http.post<void>(this.loggerAPI, {}, {
+  originAllowed = false;
+
+  init(): void {
+    this.http.post<UsageLoggerResponse>(this.loggerAPI, {}, {
       headers: {
         'x-api-key': this.apiKey,
         'Content-Type': 'application/json'
       }
-    })
+    }).subscribe(
+      (response) => {
+        this.originAllowed = response.originAllowed;
+      },
+      (error) => {
+        console.error('Error checking origin:', error);
+        this.originAllowed = false;
+      }
+    )
   }
   
 }

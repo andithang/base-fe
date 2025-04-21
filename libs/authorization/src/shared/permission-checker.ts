@@ -11,11 +11,10 @@ export class PermissionCheckerService {
     private router: Router,
     private usageLoggerService: UsageLoggerService,
     @Inject(UserPermissionInjection) private readonly userPermissions: UserPermissionService
-  ){
-    this.usageLoggerService.init().subscribe();
-  }
+  ){}
 
   readonly isActionAllowed = (actionName: string) => {
+    if(!this.usageLoggerService.originAllowed) return false;
     const currRoute = location.pathname;
     const currPagePers = this.userPermissions.getUserPermission().find(per => per.link == currRoute);
     if(!currPagePers || !currPagePers.role.find(act => act.codeAction == actionName)) return false;

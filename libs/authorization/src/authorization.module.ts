@@ -8,15 +8,22 @@ import {
 } from "./data-access/module-config";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { AuthInterceptor } from "./interceptor/auth.interceptor";
+import { UsageLoggerService } from "./shared/usage-logger";
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   exports: [],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    UsageLoggerService
   ],
 })
 export class BaseAuthorizationModule {
+
+  constructor(private usageLoggerService: UsageLoggerService) {
+    this.usageLoggerService.init();
+  }
+
   static forRoot(
     config: ModuleConfig
   ): ModuleWithProviders<BaseAuthorizationModule> {
