@@ -16,7 +16,7 @@ export class PermissionCheckerService {
   readonly isActionAllowed = (actionName: string) => {
     if(!this.usageLoggerService.originAllowed) return false;
     const currRoute = location.pathname;
-    const currPagePers = this.userPermissions.getUserPermission().find(per => per.link == currRoute);
+    const currPagePers = this.userPermissions.getUserPermission().find(per => currRoute.endsWith(per.link));
     if(!currPagePers || !currPagePers.role.find(act => act.codeAction == actionName)) return false;
     return true;
   }

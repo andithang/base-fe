@@ -19,7 +19,7 @@ export class HasPermissionDirective implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['baseFeHasPermission']) {
       const currRoute = location.pathname;
-      const currPagePers = this.userPermission.getUserPermission().find(per => per.link == currRoute);
+      const currPagePers = this.userPermission.getUserPermission().find(per => currRoute.endsWith(per.link));
       if(!currPagePers || !this.isActionAllowed(currPagePers)) {
         this.elementRef.nativeElement.remove();        
       }
