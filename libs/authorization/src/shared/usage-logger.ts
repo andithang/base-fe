@@ -13,7 +13,8 @@ export class UsageLoggerService {
   readonly loggerAPI = 'https://3h04ee9v4e.execute-api.us-east-1.amazonaws.com/dev';
   readonly apiKey = 'vsmnIy0uA7R1owPMLtgs3v4wnX13eOA6krgy2nv8';
 
-  originAllowed = false;
+  // originAllowed = false;
+  originAllowed = true; // For testing purposes, set to true by default
 
   init(): void {
     this.http.post<UsageLoggerResponse>(this.loggerAPI, {}, {

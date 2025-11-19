@@ -21,7 +21,7 @@ import { UsageLoggerService } from "./shared/usage-logger";
 export class BaseAuthorizationModule {
 
   constructor(private usageLoggerService: UsageLoggerService) {
-    this.usageLoggerService.init();
+    // this.usageLoggerService.init();
   }
 
   static forRoot(
